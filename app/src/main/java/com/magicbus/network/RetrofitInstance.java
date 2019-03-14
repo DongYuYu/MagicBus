@@ -3,6 +3,9 @@ package com.magicbus.network;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+/**
+ * this is a retrofit instance
+ */
 public class RetrofitInstance {
     private static Retrofit retrofit;
     private static final String BASEURL = "http://rjtmobile.com/aamir/otr/android-app";
