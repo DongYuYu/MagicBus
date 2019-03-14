@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitInstance {
     private static Retrofit retrofit;
-    private static final String BASEURL = "http://rjtmobile.com/aamir/otr/android-app";
+    private static final String BASEURL = "http://rjtmobile.com/aamir/otr/android-app/";
     public static Retrofit getRetrofitInstance() {
         /**
          * one retroit instance is a builder design pattern which uses url
