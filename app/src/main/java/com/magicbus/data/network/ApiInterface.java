@@ -1,5 +1,6 @@
 package com.magicbus.data.network;
 
+import com.magicbus.data.entries.CityResponse;
 import com.magicbus.data.entries.LoginResponse;
 import com.magicbus.data.entries.PasswordResponse;
 
@@ -26,4 +27,9 @@ public interface ApiInterface {
     @GET("/forgot_pass.php")
     Call<PasswordResponse> forgetPassword();
 
+
+
+
+    @GET("city.php")
+    Call<CityResponse> getCity();
 }
