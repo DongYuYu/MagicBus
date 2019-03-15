@@ -1,7 +1,7 @@
 package com.magicbus.registration;
 
-import com.magicbus.network.DataStructure;
-import com.magicbus.network.Repository;
+import com.magicbus.data.DataStructure;
+import com.magicbus.data.Repository;
 
 public class RegistrationPresenter implements RegistrationContract.Presenter, DataStructure.OnRegisterCallBack {
 
