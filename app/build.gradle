@@ -32,5 +32,12 @@ dependencies {
     //retroiet converter
     implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
 
-
+    // Dependencies for working with Architecture components
+    // You'll probably have to update the version numbers in guild.gradle (Project)
+//    implementation "android.arch.persistence.room:runtime:$rootProject.roomVersion"
+//    annotationProcessor "android.arch.persistence.room:compiler:$rootProject.roomVersion"
+//    androidTestImplementation "android.arch.persistence.room:testing:$rootProject.roomVersion"
+//    implementation "android.arch.lifecycle:extensions:$rootProject.archLifecycleVersion"
+//    annotationProcessor "android.arch.lifecycle:compiler:$rootProject.archLifecycleVersion"
+//    implementation 'com.android.support:recyclerview-v7:26.1.0'
 }

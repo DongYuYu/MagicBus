@@ -1,5 +1,6 @@
 package com.magicbus;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,11 +14,17 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+<<<<<<< HEAD
 /**
  * demo of updating a file
  */
+=======
+import com.magicbus.city.CityFragment;
+import com.magicbus.registration.RegistrationFragment;
+
+>>>>>>> DongYu
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, CityFragment.OnCityFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +50,23 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+//        RegistrationFragment homeFragment = new RegistrationFragment();
+//
+//
+//        getSupportFragmentManager().beginTransaction()
+//
+//                .replace(R.id.frag_container, homeFragment, "home")
+//                .commit();
+
+
+        CityFragment cityFragment = new CityFragment();
+
+
+        getSupportFragmentManager().beginTransaction()
+
+                .replace(R.id.frag_container, cityFragment, "city")
+                .commit();
     }
 
     @Override
@@ -100,5 +124,10 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }
