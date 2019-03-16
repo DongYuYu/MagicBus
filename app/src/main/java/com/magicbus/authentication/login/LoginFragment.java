@@ -1,4 +1,4 @@
-package com.magicbus.login;
+package com.magicbus.authentication.login;
 
 
 import android.os.Bundle;
@@ -13,8 +13,8 @@ import android.widget.Toast;
 
 import com.magicbus.R;
 import com.magicbus.data.Login;
-import com.magicbus.network.ApiInterface;
-import com.magicbus.network.RetrofitInstance;
+import com.magicbus.data.network.ApiInterface;
+import com.magicbus.data.network.RetrofitInstance;
 
 import java.util.List;
 
