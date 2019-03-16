@@ -4,8 +4,8 @@ import android.util.Log;
 
 import com.magicbus.data.entries.PasswordDetail;
 import com.magicbus.data.entries.ResponseBusInfo;
-import com.magicbus.network.ApiInterface;
-import com.magicbus.network.RetrofitInstance;
+import com.magicbus.data.network.ApiInterface;
+import com.magicbus.data.network.RetrofitInstance;
 
 import java.util.List;
 
