@@ -25,9 +25,8 @@ public interface DataStructure {
 
 
 
-    interface RouteIDCallback {
-        void routeIDCallback(Response<List<RouteID>> response);
-    }
+
+
     interface OnCityCallBack {
         void onCityReceived(List<City> cities);
     }
