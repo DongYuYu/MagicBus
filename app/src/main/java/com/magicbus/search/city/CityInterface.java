@@ -1,8 +1,7 @@
-package com.magicbus.city;
+package com.magicbus.search.city;
 
 import com.magicbus.data.entries.City;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public interface CityInterface {

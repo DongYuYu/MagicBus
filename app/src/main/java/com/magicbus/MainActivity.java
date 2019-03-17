@@ -18,13 +18,7 @@ import android.view.MenuItem;
 
 
 
-import com.magicbus.city.CityFragment;
-import com.magicbus.registration.RegistrationFragment;
-
-
-
-
-
+import com.magicbus.search.city.CityFragment;
 
 
 public class MainActivity extends AppCompatActivity

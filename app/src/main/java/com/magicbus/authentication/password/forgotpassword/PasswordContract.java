@@ -1,4 +1,4 @@
-package com.magicbus.forgotpassword;
+package com.magicbus.authentication.password.forgotpassword;
 
 import com.magicbus.data.entries.PasswordDetail;
 
