@@ -1,6 +1,7 @@
 package com.magicbus.data.network;
 
 import com.magicbus.data.entries.Login;
+import com.magicbus.data.entries.ResponseSeatInfo;
 import com.magicbus.data.entries.ServiceListResponse;
 import com.magicbus.data.entries.Login;
 
@@ -58,17 +59,14 @@ public interface ApiInterface {
     Call<List<Login>> getLoginResponse(@Field("mobile") String mobile,
                                        @Field("password") String password);
 
-
-
-
-
-
-
-
+    @FormUrlEncoded
+    @POST("seatinfo.php")
+    Call<ResponseSeatInfo>  getSeatInfoResponse(@Field("busid") String bus_id);
 
 
     @GET("city.php")
     Call<CityResponse> getCity();
+
     @FormUrlEncoded
     @POST("forgot_pass.php")
     Call<List<PasswordDetail>> getPasswordDetails(@Field("mobile") String mobile);

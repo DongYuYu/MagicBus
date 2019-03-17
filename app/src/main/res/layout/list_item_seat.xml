@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+
+    <ImageView
+        android:id="@+id/img_seat"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/seat_normal"
+        tools:layout_editor_absoluteX="180dp"
+        tools:layout_editor_absoluteY="16dp"></ImageView>
+
+    <ImageView
+        android:id="@+id/img_seat_selected"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/seat_normal_selected"
+        android:visibility="invisible"
+        tools:layout_editor_absoluteX="180dp"
+        tools:layout_editor_absoluteY="16dp"></ImageView>
+
+    <ImageView
+        android:id="@+id/img_seat_booked"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/seat_normal_booked"
+        android:visibility="invisible"
+        tools:layout_editor_absoluteX="180dp"
+        tools:layout_editor_absoluteY="16dp"></ImageView>
+
+    <TextView
+        android:id="@+id/tvSeatNo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="22"
+
+        android:textSize="12sp"
+        tools:layout_editor_absoluteX="198dp"
+        tools:layout_editor_absoluteY="26dp" />
+
+
+</RelativeLayout>
