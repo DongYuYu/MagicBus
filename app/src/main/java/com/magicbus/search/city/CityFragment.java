@@ -9,11 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.magicbus.R;
 import com.magicbus.data.entries.City;
+import com.magicbus.search.servicelist.ServiceListFragment;
 
 import java.util.List;
 
@@ -25,7 +27,7 @@ import java.util.List;
  * Use the {@link CityFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CityFragment extends Fragment implements CityInterface.View, AdapterView.OnItemSelectedListener {
+public class CityFragment extends Fragment implements CityInterface.View, AdapterView.OnItemSelectedListener, View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -40,6 +42,7 @@ public class CityFragment extends Fragment implements CityInterface.View, Adapte
     Spinner spinner;
 
     Spinner spinner2;
+    Button button;
     private OnCityFragmentInteractionListener mListener;
 
     public CityFragment() {
@@ -61,6 +64,9 @@ public class CityFragment extends Fragment implements CityInterface.View, Adapte
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
+
+
+
         return fragment;
     }
 
@@ -71,6 +77,9 @@ public class CityFragment extends Fragment implements CityInterface.View, Adapte
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
+
 
 
 
@@ -97,6 +106,10 @@ public class CityFragment extends Fragment implements CityInterface.View, Adapte
 
 
         spinner2.setOnItemSelectedListener(this);
+
+
+        button = view.findViewById(R.id.btnSearch);
+        button.setOnClickListener(this);
         return view;
     }
 
@@ -156,6 +169,56 @@ public class CityFragment extends Fragment implements CityInterface.View, Adapte
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        City from = (City) spinner.getSelectedItem();
+
+        City to = (City) spinner2.getSelectedItem();
+
+        String start_lat, start_long, end_lat, end_long;
+        start_lat = from.getCitylatitude();
+
+        start_long = from.getCitylongtitude();
+        end_lat = to.getCitylatitude();
+        end_long = to.getCitylongtitude();
+
+
+
+
+        Bundle args = new Bundle();
+        args.putString("start_lat", start_lat);
+
+        args.putString("start_long", start_long);
+        args.putString("end_lat", end_lat);
+
+
+
+
+
+        args.putString("end_long", end_long);
+        Fragment fg = new ServiceListFragment();
+        fg.setArguments(args);
+
+
+
+
+
+
+        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, fg)
+
+
+
+
+                .addToBackStack(null)
+
+
+
+
+
+                .commit();
 
     }
 

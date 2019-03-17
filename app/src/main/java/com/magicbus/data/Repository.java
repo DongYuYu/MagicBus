@@ -53,6 +53,7 @@ public class Repository implements DataStructure {
         });
     }
 
+
     public void serviceList(String startpoint_latitude, String startpoint_longitude, String endpoint_latitude, String endpoint_longitude, final ServiceListCallback callback) {
 
         ApiInterface apiInterface = RetrofitInstance.getRetrofitInstance().create(ApiInterface.class);
@@ -62,8 +63,14 @@ public class Repository implements DataStructure {
             @Override
             public void onResponse(Call<ServiceListResponse> call, Response<ServiceListResponse> response) {
                 ServiceListResponse serviceListResponse = response.body();
-                callback.serviceListCallback(serviceListResponse.getServiceList());
+
                 Log.d("ServiceList Response", serviceListResponse.toString());
+
+
+
+
+                callback.serviceListCallback(serviceListResponse.getServiceList());
+
             }
 
             @Override
@@ -72,11 +79,11 @@ public class Repository implements DataStructure {
             }
         });
     }
+
     public void register(String firstName, String lastName, String address, String email, String mobile, String password, final OnRegisterCallBack onRegisterCallBack) {
 
 
-
-        final Call<String> register = apiInterface.register(firstName, lastName, address, email, mobile, password);
+        Call<String> register = apiInterface.register(firstName, lastName, address, email, mobile, password);
 
         register.enqueue(new Callback<String>() {
             @Override
@@ -85,7 +92,7 @@ public class Repository implements DataStructure {
 
 
                 String registerResponse = response.body();
-
+                String uri = response.raw().request().url().toString();
 
                 Log.d("Retrofit", registerResponse);
 

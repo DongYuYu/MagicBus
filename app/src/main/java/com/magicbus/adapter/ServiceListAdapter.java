@@ -16,8 +16,20 @@ public class ServiceListAdapter extends RecyclerView.Adapter<ServiceListAdapter.
 
     List<ServiceList> serviceLists;
 
+
+
+
+    private OnItemClickListener onItemClickListener;
+    public interface OnItemClickListener {
+        public void onItemClick(View view, int position);
+    }
     public ServiceListAdapter(List<ServiceList> serviceLists) {
         this.serviceLists = serviceLists;
+    }
+
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
     }
 
     @NonNull
@@ -36,6 +48,10 @@ public class ServiceListAdapter extends RecyclerView.Adapter<ServiceListAdapter.
         myViewHolder.arriveCity.setText(serviceList.getRoute_destination());
     }
 
+    public String getItemIdString(int position) {
+        return serviceLists.get(position).getId();
+    }
+
     @Override
     public int getItemCount() {
         return serviceLists.size();
@@ -51,11 +67,16 @@ public class ServiceListAdapter extends RecyclerView.Adapter<ServiceListAdapter.
             routeName = itemView.findViewById(R.id.tv_routeName);
             departCity = itemView.findViewById(R.id.tv_startFrom);
             arriveCity = itemView.findViewById(R.id.tv_destination);
+
+
+
+            itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-            int position = getLayoutPosition();
+
+            onItemClickListener.onItemClick(v, getPosition());
 
 //            FragmentTransaction ft = Context
 

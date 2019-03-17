@@ -1,4 +1,4 @@
-package com.magicbus.servicelist;
+package com.magicbus.search.servicelist;
 
 import com.magicbus.data.entries.ServiceList;
 import com.magicbus.data.DataStructure;

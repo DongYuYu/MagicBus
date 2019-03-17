@@ -17,6 +17,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 public interface ApiInterface {
 
@@ -38,14 +39,14 @@ public interface ApiInterface {
 //    @GET("/forgot_pass.php")
 //    Call<PasswordResponse> forgetPassword();
 
-    @FormUrlEncoded
-    @POST("registration.php")
-    Call<String> register(@Field("firstname") String firstName,
-                          @Field("lastname")  String lastName,
-                          @Field("address") String address,
-                          @Field("email") String email,
-                          @Field("mobile") String mobile,
-                          @Field("password") String password);
+
+    @GET("registration.php")
+    Call<String> register(@Query("firstname") String firstName,
+                          @Query("lastname")  String lastName,
+                          @Query("address") String address,
+                          @Query("email") String email,
+                          @Query("mobile") String mobile,
+                          @Query("password") String password);
 
     @GET("/login.php")
     Call<LoginResponse> login(); //implemnt LoginResponse pojo
