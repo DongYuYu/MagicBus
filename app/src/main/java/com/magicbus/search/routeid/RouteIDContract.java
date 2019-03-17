@@ -1,8 +1,6 @@
-package com.magicbus.routeid;
+package com.magicbus.search.routeid;
 
 import com.magicbus.data.RouteID;
-
-import org.json.JSONObject;
 
 import java.util.List;
 

@@ -1,13 +1,10 @@
-package com.magicbus.businformation;
+package com.magicbus.search.businformation;
 
 import android.util.Log;
 
-import com.magicbus.data.entries.PasswordDetail;
 import com.magicbus.data.entries.ResponseBusInfo;
 import com.magicbus.data.network.ApiInterface;
 import com.magicbus.data.network.RetrofitInstance;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;

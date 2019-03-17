@@ -1,4 +1,4 @@
-package com.magicbus.routeid;
+package com.magicbus.search.routeid;
 
 
 import android.os.Bundle;
@@ -9,8 +9,6 @@ import android.view.ViewGroup;
 
 import com.magicbus.R;
 import com.magicbus.data.RouteID;
-
-import org.json.JSONObject;
 
 import java.util.List;
 

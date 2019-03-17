@@ -1,4 +1,4 @@
-package com.magicbus.registration;
+package com.magicbus.authentication.registration;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;

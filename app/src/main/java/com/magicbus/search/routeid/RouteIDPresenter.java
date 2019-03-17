@@ -1,10 +1,8 @@
-package com.magicbus.routeid;
+package com.magicbus.search.routeid;
 
 import com.magicbus.data.DataStructure;
 import com.magicbus.data.Repository;
 import com.magicbus.data.RouteID;
-import com.magicbus.data.DataStructure;
-import com.magicbus.data.Repository;
 
 import java.util.List;
 

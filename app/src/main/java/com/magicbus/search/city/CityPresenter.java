@@ -1,4 +1,4 @@
-package com.magicbus.city;
+package com.magicbus.search.city;
 
 import com.magicbus.data.DataStructure;
 import com.magicbus.data.Repository;

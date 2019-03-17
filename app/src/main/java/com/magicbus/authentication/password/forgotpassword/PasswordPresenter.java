@@ -1,11 +1,11 @@
-package com.magicbus.forgotpassword;
+package com.magicbus.authentication.password.forgotpassword;
 
 
 import android.util.Log;
 
 import com.magicbus.data.entries.PasswordDetail;
-import com.magicbus.network.ApiInterface;
-import com.magicbus.network.RetrofitInstance;
+import com.magicbus.data.network.ApiInterface;
+import com.magicbus.data.network.RetrofitInstance;
 
 import java.util.List;
 

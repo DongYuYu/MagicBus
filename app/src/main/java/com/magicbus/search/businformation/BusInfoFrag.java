@@ -1,4 +1,4 @@
-package com.magicbus.businformation;
+package com.magicbus.search.businformation;
 
 
 import android.os.Bundle;

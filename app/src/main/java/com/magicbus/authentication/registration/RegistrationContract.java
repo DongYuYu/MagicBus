@@ -1,4 +1,4 @@
-package com.magicbus.registration;
+package com.magicbus.authentication.registration;
 
 public interface RegistrationContract {
     interface View {

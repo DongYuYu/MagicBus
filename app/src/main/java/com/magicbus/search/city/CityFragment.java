@@ -1,4 +1,4 @@
-package com.magicbus.city;
+package com.magicbus.search.city;
 
 import android.content.Context;
 import android.net.Uri;
@@ -15,7 +15,6 @@ import android.widget.Toast;
 import com.magicbus.R;
 import com.magicbus.data.entries.City;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
