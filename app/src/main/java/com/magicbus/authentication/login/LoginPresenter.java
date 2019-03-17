@@ -1,14 +1,13 @@
-package com.magicbus.login;
+package com.magicbus.authentication.login;
 
 import android.util.Log;
 
+import com.magicbus.authentication.login.LoginContract;
 import com.magicbus.data.entries.Login;
 import com.magicbus.data.DataStructure;
 import com.magicbus.data.Repository;
 
 import java.util.List;
-
-import retrofit2.Response;
 
 public class LoginPresenter implements LoginContract.Presenter, DataStructure.LoginCallback {
 

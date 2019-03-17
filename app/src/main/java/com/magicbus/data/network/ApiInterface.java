@@ -1,7 +1,9 @@
 package com.magicbus.data.network;
 
-import com.magicbus.data.Login;
-import com.magicbus.data.RouteID;
+import com.magicbus.data.entries.Login;
+import com.magicbus.data.entries.ServiceListResponse;
+import com.magicbus.data.entries.Login;
+
 import com.magicbus.data.entries.CityResponse;
 import com.magicbus.data.entries.LoginResponse;
 import com.magicbus.data.entries.PasswordDetail;
@@ -59,16 +61,11 @@ public interface ApiInterface {
 
 
 
-    @FormUrlEncoded
-    @POST("routeinfo.php")
 
 
 
 
-    Call<List<RouteID>> getRouteID(@Field("route-startpoint-latitude") String startpoint_latitude,
-                             @Field("route-startpoint-longitude") String startpoint_longitude,
-                             @Field("route-endpoint-latitude") String endpoint_latitude,
-                             @Field("route-endpoint-longiude") String endpoint_longitude);
+
 
     @GET("city.php")
     Call<CityResponse> getCity();

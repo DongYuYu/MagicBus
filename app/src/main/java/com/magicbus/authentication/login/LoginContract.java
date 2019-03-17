@@ -1,4 +1,4 @@
-package com.magicbus.login;
+package com.magicbus.authentication.login;
 
 import com.magicbus.data.entries.Login;
 
