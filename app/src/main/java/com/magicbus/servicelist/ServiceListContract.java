@@ -1,15 +1,15 @@
-package com.magicbus.search.routeid;
+package com.magicbus.servicelist;
 
-import com.magicbus.data.RouteID;
+import com.magicbus.data.entries.ServiceList;
 
 import java.util.List;
 
 import retrofit2.Response;
 
-public interface RouteIDContract {
+public interface ServiceListContract {
 
     interface View {
-        void getResponse(Response<List<RouteID>> response);
+        void getResponse(List<ServiceList> response);
 
     }
 

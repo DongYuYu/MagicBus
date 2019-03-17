@@ -1,4 +1,4 @@
-package com.magicbus.data;
+package com.magicbus.data.entries;
 
 import com.google.gson.annotations.SerializedName;
 
