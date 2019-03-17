@@ -14,15 +14,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-<<<<<<< HEAD
-/**
- * demo of updating a file
- */
-=======
-import com.magicbus.city.CityFragment;
-import com.magicbus.registration.RegistrationFragment;
 
->>>>>>> DongYu
+
+
+
+import com.magicbus.search.city.CityFragment;
+
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, CityFragment.OnCityFragmentInteractionListener {
 
