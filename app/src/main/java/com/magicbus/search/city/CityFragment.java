@@ -157,12 +157,12 @@ public class CityFragment extends Fragment implements CityInterface.View, Adapte
         switch(parent.getId()) {
             case R.id.planets_spinner:
                 City city = (City) parent.getItemAtPosition(position);
-                Toast.makeText(getActivity(), city.getCityname(), Toast.LENGTH_LONG).show();
+                //Toast.makeText(getActivity(), city.getCityname(), Toast.LENGTH_LONG).show();
                 break;
 
             case R.id.planets_spinner1:
                 City city3 = (City) parent.getItemAtPosition(position);
-                Toast.makeText(getActivity(), city3.getCitylatitude(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), city3.getCitylatitude(), Toast.LENGTH_SHORT).show();
                 break;
         }
     }

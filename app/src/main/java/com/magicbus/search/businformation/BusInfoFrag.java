@@ -1,6 +1,7 @@
 package com.magicbus.search.businformation;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 
 import com.magicbus.R;
 import com.magicbus.data.entries.BusInformation;
+import com.magicbus.reservation.SeatActivity;
 
 import java.util.List;
 
@@ -105,5 +107,27 @@ public class BusInfoFrag extends Fragment implements BusInfoContract.BusInfoView
     @OnClick(R.id.btn_BusSeat)
     public void onViewClicked() {
         //when this button is clicked, it will navigate to the select bus seat activity.
+
+
+
+
+
+
+
+
+
+
+
+        Intent intent = new Intent(getActivity(), SeatActivity.class);
+        intent.putExtra("busid", busInformationList.get(0).getBusid());
+        startActivity(intent);
+
+
+
+
+
+
+
+
     }
 }

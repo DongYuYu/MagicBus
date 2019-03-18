@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -16,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 
+import com.magicbus.authentication.login.LoginFragment;
 import com.magicbus.authentication.registration.RegistrationFragment;
 import com.magicbus.reservation.SeatActivity;
 import com.magicbus.search.city.CityFragment;
@@ -47,8 +49,8 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        RegistrationFragment fg = new RegistrationFragment();
-        startActivity(new Intent(this, SeatActivity.class));
+        //RegistrationFragment fg = new RegistrationFragment();
+        //startActivity(new Intent(this, SeatActivity.class));
 //        RegistrationFragment homeFragment = new RegistrationFragment();
 //
 //
@@ -57,13 +59,24 @@ public class MainActivity extends AppCompatActivity
 //                .replace(R.id.frag_container, homeFragment, "home")
 //                .commit();
 
-        //CityFragment fg = new CityFragment();
 
 
-//        getSupportFragmentManager().beginTransaction()
-//
-//                .replace(R.id.frag_container, fg, "city")
-//                .commit();
+
+
+
+
+
+
+
+        Fragment fg = new LoginFragment();
+
+        getSupportFragmentManager().beginTransaction()
+
+                .replace(R.id.frag_container, fg)
+
+
+
+                .commit();
     }
 
     @Override

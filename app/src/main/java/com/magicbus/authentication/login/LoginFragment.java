@@ -17,6 +17,7 @@ import com.magicbus.R;
 import com.magicbus.data.entries.Login;
 import com.magicbus.data.network.ApiInterface;
 import com.magicbus.data.network.RetrofitInstance;
+import com.magicbus.search.city.CityFragment;
 
 import java.util.List;
 
@@ -72,5 +73,28 @@ public class LoginFragment extends Fragment implements LoginContract.View {
     @Override
     public void getResponse(List<Login> response) {
 
+
+
+
+
+
+        if(response.get(0).getMessage().equals("success")) {
+
+
+            Fragment fg = new CityFragment();
+
+            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, fg)
+
+
+
+
+                    .addToBackStack(null)
+
+
+
+
+
+                    .commit();
+        }
     }
 }
