@@ -1,10 +1,8 @@
-package com.magicbus.servicelist;
+package com.magicbus.search.servicelist;
 
 import com.magicbus.data.entries.ServiceList;
 
 import java.util.List;
-
-import retrofit2.Response;
 
 public interface ServiceListContract {
 

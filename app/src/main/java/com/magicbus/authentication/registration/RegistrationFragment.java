@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.magicbus.R;
+import com.magicbus.authentication.login.LoginFragment;
 
 public class RegistrationFragment extends Fragment implements RegistrationContract.View, View.OnClickListener {
     EditText firstname, lastname, address, email, mobile, password;
@@ -72,6 +73,24 @@ public class RegistrationFragment extends Fragment implements RegistrationContra
 
     @Override
     public void login(String response) {
+        if (response.equals("\nsuccessfully registered")) {
 
+
+            LoginFragment fg = new LoginFragment();
+
+            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, fg)
+
+
+
+
+                    .addToBackStack(null)
+
+
+
+
+
+                    .commit();
+
+        }
     }
 }

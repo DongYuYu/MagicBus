@@ -1,4 +1,4 @@
-package com.magicbus.servicelist;
+package com.magicbus.search.servicelist;
 
 
 import android.os.Bundle;
@@ -13,11 +13,9 @@ import android.view.ViewGroup;
 import com.magicbus.R;
 import com.magicbus.adapter.ServiceListAdapter;
 import com.magicbus.data.entries.ServiceList;
+import com.magicbus.search.businformation.BusInfoFrag;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -41,7 +39,11 @@ public class ServiceListFragment extends Fragment implements ServiceListContract
         serviceListRecyclerView = view.findViewById(R.id.rv_serviceList);
 
         presenter = new ServiceListPresenter(this);
-        presenter.sendRequest("41.914196", "-88.308685", "40.73061", "-73.935242");
+
+
+        Bundle args = getArguments();
+        //presenter.sendRequest("41.914196", "-88.308685", "40.73061", "-73.935242");
+        presenter.sendRequest(args.getString("start_lat"), args.getString("start_long"), args.getString("end_lat"), args.getString("end_long"));
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         serviceListRecyclerView.setLayoutManager(layoutManager);
@@ -52,9 +54,40 @@ public class ServiceListFragment extends Fragment implements ServiceListContract
 
     @Override
     public void getResponse(List<ServiceList> response) {
-        Log.e("Response", response.toString());
-
+        Log.d("Response", response.toString());
         serviceListAdapter = new ServiceListAdapter(response);
+        serviceListAdapter.setOnItemClickListener(new ServiceListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+
+                String id = serviceListAdapter.getItemIdString(position);
+
+                Bundle arg = new Bundle();
+
+                arg.putString("id", id);
+
+
+
+                Fragment fg = new BusInfoFrag();
+
+                fg.setArguments(arg);
+
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, fg)
+
+
+
+
+                        .addToBackStack(null)
+
+
+
+
+
+                        .commit();
+            }
+        });
+
         serviceListRecyclerView.setAdapter(serviceListAdapter);
+
     }
 }

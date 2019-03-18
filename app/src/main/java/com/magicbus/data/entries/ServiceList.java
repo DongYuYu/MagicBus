@@ -1,9 +1,37 @@
 package com.magicbus.data.entries;
 
+import com.google.gson.annotations.SerializedName;
+
 public class ServiceList {
 
-    private String id, routename, route_startfrom, route_destination, route_startpoint_latitude
-            , route_startpoint_longitude, route_endpoint_latitude, route_endpoint_longiude;
+
+    private String id;
+
+    private String routename;
+
+
+    @SerializedName("route-startfrom")
+    private String route_startfrom;
+    @SerializedName("route-destination")
+    private String route_destination;
+
+    @SerializedName("route-startpoint-latitude")
+    private String route_startpoint_latitude;
+
+    @SerializedName("route-startpoint-longitude")
+    private String route_startpoint_longitude;
+    @SerializedName("route-endpoint-latitude")
+    private String route_endpoint_latitude;
+
+
+
+
+
+    @SerializedName("route-endpoint-longiude")
+    private String route_endpoint_longiude;
+
+
+
 
     public ServiceList(String id, String routename, String route_startfrom, String route_destination,
                        String route_startpoint_latitude, String route_startpoint_longitude,

@@ -60,7 +60,7 @@ public class BusInfoFrag extends Fragment implements BusInfoContract.BusInfoView
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Fragment hasn't been linked with an activity yet
-        // ((activity here)getActivity().setActionBarTitle("BUS INFORMATION");
+        route_id = getArguments().getString("id");
         // get Bus Info passing the route_id as argument
         // the routeid is passed through shared preference and stored in the global variable route_id declare in the fragment
         //

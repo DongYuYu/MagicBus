@@ -24,10 +24,12 @@ public class RegistrationPresenter implements RegistrationContract.Presenter, Da
         repository = Repository.getRepository();
     }
 
-    @Override
+
     public void register(String firstName, String lastName, String address, String email, String mobile, String password) {
+
         repository.register(firstName, lastName, address, email, mobile, password, this);
     }
+
 
     @Override
     public void onRegisterReceived(String response) {

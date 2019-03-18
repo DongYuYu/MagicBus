@@ -1,6 +1,7 @@
 package com.magicbus.data.network;
 
 import com.magicbus.data.entries.Login;
+import com.magicbus.data.entries.ResponseSeatInfo;
 import com.magicbus.data.entries.ServiceListResponse;
 import com.magicbus.data.entries.Login;
 
@@ -17,6 +18,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 public interface ApiInterface {
 
@@ -38,14 +40,14 @@ public interface ApiInterface {
 //    @GET("/forgot_pass.php")
 //    Call<PasswordResponse> forgetPassword();
 
-    @FormUrlEncoded
-    @POST("registration.php")
-    Call<String> register(@Field("firstname") String firstName,
-                          @Field("lastname")  String lastName,
-                          @Field("address") String address,
-                          @Field("email") String email,
-                          @Field("mobile") String mobile,
-                          @Field("password") String password);
+
+    @GET("registration.php")
+    Call<String> register(@Query("firstname") String firstName,
+                          @Query("lastname")  String lastName,
+                          @Query("address") String address,
+                          @Query("email") String email,
+                          @Query("mobile") String mobile,
+                          @Query("password") String password);
 
     @GET("/login.php")
     Call<LoginResponse> login(); //implemnt LoginResponse pojo
@@ -58,17 +60,14 @@ public interface ApiInterface {
     Call<List<Login>> getLoginResponse(@Field("mobile") String mobile,
                                        @Field("password") String password);
 
-
-
-
-
-
-
-
+    @FormUrlEncoded
+    @POST("seatinfo.php")
+    Call<ResponseSeatInfo>  getSeatInfoResponse(@Field("busid") String bus_id);
 
 
     @GET("city.php")
     Call<CityResponse> getCity();
+
     @FormUrlEncoded
     @POST("forgot_pass.php")
     Call<List<PasswordDetail>> getPasswordDetails(@Field("mobile") String mobile);
