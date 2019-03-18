@@ -32,7 +32,7 @@ public class SeatActivity extends AppCompatActivity implements SeatSelectionCont
         setContentView(R.layout.activity_seat);
 
         seatPresenter = new SeatPresenter(this);
-        seatPresenter.getSeatInformation("102");
+        seatPresenter.getSeatInformation(getIntent().getStringExtra("busid"));
 
         txtSeatSelected = (TextView)findViewById(R.id.txt_seat_selected);
 
@@ -59,6 +59,7 @@ public class SeatActivity extends AppCompatActivity implements SeatSelectionCont
          * we will used the seat info to choose which seats is reserved or free
          *
          */
+
         this.seatInfoList = seatInfoList;
         Log.d(TAG, " showSeatInfo: " + seatInfoList.size()+ seatInfoList.get(0)) ;
        // String[] seatInfoArray = new String[47];
@@ -68,6 +69,7 @@ public class SeatActivity extends AppCompatActivity implements SeatSelectionCont
         GridLayoutManager manager = new GridLayoutManager(this, COLUMNS);
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.lst_items);
         recyclerView.setLayoutManager(manager);
+        recyclerView.setHasFixedSize(true);
 
 
         AirplaneAdapter adapter = new AirplaneAdapter(this, items, seatInfoList);
@@ -81,6 +83,7 @@ public class SeatActivity extends AppCompatActivity implements SeatSelectionCont
 
     @Override
     public void onSeatSelected(int count) {
+
         txtSeatSelected.setText("Book "+count+" seats");
 
     }

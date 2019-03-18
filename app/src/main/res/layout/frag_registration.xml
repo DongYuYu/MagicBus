@@ -9,34 +9,31 @@
         android:id="@+id/lastName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="33dp"
         android:ems="10"
         android:hint="LastName"
         android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/firstName" />
+        tools:layout_editor_absoluteX="98dp"
+        tools:layout_editor_absoluteY="217dp" />
 
     <EditText
         android:id="@+id/address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="23dp"
         android:ems="10"
         android:hint="Address"
         android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/lastName" />
+        tools:layout_editor_absoluteX="98dp"
+        tools:layout_editor_absoluteY="285dp" />
 
     <EditText
         android:id="@+id/email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="22dp"
         android:ems="10"
         android:hint="Email"
         android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/register" />
+        tools:layout_editor_absoluteX="98dp"
+        tools:layout_editor_absoluteY="361dp" />
 
     <EditText
         android:id="@+id/mobile"
@@ -45,30 +42,28 @@
         android:ems="10"
         android:hint="Mobile"
         android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/email" />
+        tools:layout_editor_absoluteX="99dp"
+        tools:layout_editor_absoluteY="432dp" />
 
     <EditText
         android:id="@+id/password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="27dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/mobile" />
+        tools:layout_editor_absoluteX="98dp"
+        tools:layout_editor_absoluteY="503dp" />
 
     <EditText
         android:id="@+id/firstName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="139dp"
         android:ems="10"
         android:hint="FirstName"
         android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:layout_editor_absoluteX="98dp"
+        tools:layout_editor_absoluteY="139dp" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline"
@@ -81,9 +76,7 @@
         android:id="@+id/register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="11dp"
-        android:text="Button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/address" />
+        android:text="register"
+        tools:layout_editor_absoluteX="161dp"
+        tools:layout_editor_absoluteY="581dp" />
 </android.support.constraint.ConstraintLayout>

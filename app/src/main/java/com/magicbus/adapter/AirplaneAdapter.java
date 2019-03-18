@@ -72,14 +72,14 @@ public class AirplaneAdapter extends SelectableAdapter<RecyclerView.ViewHolder> 
         }
 
     }
-    private Map<Integer, String> hash = new HashMap<>();
+    private Map<Integer, Integer> hash = new HashMap<>();
 
     private Context mContext;
     private LayoutInflater mLayoutInflater;
     private List<SeatInformation> seatInfoList;
 
     private List<AbstractItem> mItems;
-    private int seatCounter = 0;
+
 
     public AirplaneAdapter(Context context, List<AbstractItem> items, List<SeatInformation> seatInfoList) {
         this.seatInfoList = seatInfoList;
@@ -90,6 +90,29 @@ public class AirplaneAdapter extends SelectableAdapter<RecyclerView.ViewHolder> 
         mContext = context;
         mLayoutInflater = LayoutInflater.from(context);
         mItems = items;
+        for (int i = 0; i < mItems.size(); i++) {
+
+            int row = i / 5;
+
+            int col = i % 5;
+            if (col == 2) {
+                hash.put(i, -1);
+            }else if (col < 2) {
+                hash.put(i, i - row + 1);
+            }else {
+
+
+
+
+
+
+
+
+                hash.put(i, i - row - 1 + 1);
+            }
+
+        }
+
     }
 
     @Override
@@ -119,21 +142,26 @@ public class AirplaneAdapter extends SelectableAdapter<RecyclerView.ViewHolder> 
 
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder viewHolder, final int position) {
+        int adjPosition = hash.get(position);
+
+
+
+
         int type = mItems.get(position).getType();
-          int value =  Integer.valueOf(mItems.get(position).getLabel());
+          int value =  Integer.valueOf(mItems.get(position).getLabel());  //position == label?
         Log.d(TAG, "onBindViewHolder: checking the position clicked" + position);
       //  Log.d(TAG, "onBindViewHolder: " + seatInfoList.get(0).);
 
         if (type == AbstractItem.TYPE_CENTER) {
             final CenterItem item = (CenterItem) mItems.get(position);
             CenterViewHolder holder = (CenterViewHolder) viewHolder;
-                holder.tvSeatNo.setText(String.valueOf(position));
+                holder.tvSeatNo.setText(String.valueOf(adjPosition));
                 SeatInformation seatInformation = seatInfoList.get(0);
 
                 String reserved = "";
                 try {
 
-                    Method getSeat = seatInformation.getClass().getDeclaredMethod("getS" + String.valueOf(position + 1));
+                    Method getSeat = seatInformation.getClass().getDeclaredMethod("getS" + String.valueOf(adjPosition));
                     reserved = (String) getSeat.invoke(seatInformation);
 
                 } catch (NoSuchMethodException e) {
@@ -145,9 +173,10 @@ public class AirplaneAdapter extends SelectableAdapter<RecyclerView.ViewHolder> 
                 }
             if (reserved.equals("1")) {
                 holder.imgSeatBooked.setVisibility(View.VISIBLE);
+                holder.imgSeat.setOnClickListener(null);
                 return;
             }
-
+            holder.imgSeatBooked.setVisibility(View.INVISIBLE);
             //   holder.imgSeatBooked
 
             holder.imgSeat.setOnClickListener(new View.OnClickListener() {
@@ -167,7 +196,7 @@ public class AirplaneAdapter extends SelectableAdapter<RecyclerView.ViewHolder> 
             final EdgeItem item = (EdgeItem) mItems.get(position);
             EdgeViewHolder holder = (EdgeViewHolder) viewHolder;
 
-            holder.tvSeatNo.setText(String.valueOf(position));
+            holder.tvSeatNo.setText(String.valueOf(adjPosition));
 
 
             SeatInformation seatInformation = seatInfoList.get(0);
@@ -175,7 +204,7 @@ public class AirplaneAdapter extends SelectableAdapter<RecyclerView.ViewHolder> 
             String reserved = "";
             try {
 
-                Method getSeat = seatInformation.getClass().getDeclaredMethod("getS" + String.valueOf(position + 1));
+                Method getSeat = seatInformation.getClass().getDeclaredMethod("getS" + String.valueOf(adjPosition));
                 reserved = (String) getSeat.invoke(seatInformation);
 
             } catch (NoSuchMethodException e) {
@@ -187,10 +216,14 @@ public class AirplaneAdapter extends SelectableAdapter<RecyclerView.ViewHolder> 
             }
             if (reserved.equals("1")) {
                 holder.imgSeatBooked.setVisibility(View.VISIBLE);
+
+
+                holder.imgSeat.setOnClickListener(null);
+
                 return;
             }
 
-
+            holder.imgSeatBooked.setVisibility(View.INVISIBLE);
             holder.imgSeat.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
