@@ -1,5 +1,6 @@
 package com.magicbus;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -16,6 +17,7 @@ import android.view.MenuItem;
 
 
 import com.magicbus.authentication.registration.RegistrationFragment;
+import com.magicbus.reservation.SeatActivity;
 import com.magicbus.search.city.CityFragment;
 
 
@@ -28,7 +30,6 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,9 +47,8 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-
         RegistrationFragment fg = new RegistrationFragment();
+        startActivity(new Intent(this, SeatActivity.class));
 //        RegistrationFragment homeFragment = new RegistrationFragment();
 //
 //
@@ -60,10 +60,10 @@ public class MainActivity extends AppCompatActivity
         //CityFragment fg = new CityFragment();
 
 
-        getSupportFragmentManager().beginTransaction()
-
-                .replace(R.id.frag_container, fg, "city")
-                .commit();
+//        getSupportFragmentManager().beginTransaction()
+//
+//                .replace(R.id.frag_container, fg, "city")
+//                .commit();
     }
 
     @Override
