@@ -234,16 +234,26 @@ public class Repository implements DataStructure {
         ApiInterface apiInterface = RetrofitInstance.getRetrofitInstance().create(ApiInterface.class);
         Call<List<CouponsValidation>> couponsValidation = apiInterface.getCouponsValidationResponse(couponno);
 
-    public void reserve(String busid, List<Integer> selectedSeat, OnReserveCallBack onReserveCallBack) {
-
-
-
         couponsValidation.enqueue(new Callback<List<CouponsValidation>>() {
             @Override
             public void onResponse(Call<List<CouponsValidation>> call, Response<List<CouponsValidation>> response) {
                 Log.d("Coupons Validation", response.toString());
                 couponsValidationCallback.couponsValidationCallback(response.body());
             }
+
+            @Override
+            public void onFailure(Call<List<CouponsValidation>> call, Throwable t) {
+                Log.e("Coupons Validation", t.getMessage());
+            }
+        });
+
+
+    }
+    public void reserve(String busid, List<Integer> selectedSeat, OnReserveCallBack onReserveCallBack) {
+
+
+
+
 
 
         int n = selectedSeat.size();
@@ -277,12 +287,14 @@ public class Repository implements DataStructure {
             }
         });
     }
-            @Override
-            public void onFailure(Call<List<CouponsValidation>> call, Throwable t) {
-                Log.e("Coupons Validation", t.getMessage());
-            }
-        });
 
 
-    }
+
+
+
+
+
+
+
+
 }
