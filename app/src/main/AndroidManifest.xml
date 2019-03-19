@@ -10,13 +10,14 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".reservation.SeatActivity"/>
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".passenger.PassengerActivity"></activity>
+        <activity android:name=".reservation.SeatActivity" />
         <activity
             android:name=".search.SearchActivity"
             android:label="@string/title_activity_search"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -27,9 +28,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
-
     </application>
 
 </manifest>
