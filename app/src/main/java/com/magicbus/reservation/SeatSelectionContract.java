@@ -9,9 +9,19 @@ public interface SeatSelectionContract {
 
     interface  SeatSelectionView{
         void showSeatInfo(List<SeatInformation> seatInfoList);
+
+        void passengerDetails(int[] adjustSeats);
     }
 
     interface SeatSelectionPresenter{
        void getSeatInformation(String bus_id);
+
+
+
+
+
+
+
+        void reserve(String busid, List<Integer> selectedSeat);
     }
 }

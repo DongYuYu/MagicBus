@@ -39,4 +39,7 @@ public interface DataStructure {
     interface ServiceListCallback {
         void serviceListCallback(List<ServiceList> response);
     }
+    interface OnReserveCallBack {
+        void reserveRecieved(String string, int[] adjustSeats);
+    }
 }

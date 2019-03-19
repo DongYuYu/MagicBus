@@ -1,10 +1,12 @@
 package com.magicbus.reservation;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import com.magicbus.R;
@@ -13,18 +15,23 @@ import com.magicbus.data.entries.AbstractItem;
 import com.magicbus.data.entries.CenterItem;
 import com.magicbus.data.entries.EdgeItem;
 import com.magicbus.data.entries.EmptyItem;
+import com.magicbus.data.entries.Passenger;
 import com.magicbus.data.entries.SeatInformation;
+import com.magicbus.passenger.PassengerActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SeatActivity extends AppCompatActivity implements SeatSelectionContract.SeatSelectionView,OnSeatSelected{
+public class SeatActivity extends AppCompatActivity implements SeatSelectionContract.SeatSelectionView,OnSeatSelected, View.OnClickListener {
     private static final String TAG = SeatActivity.class.getSimpleName();
     private List<SeatInformation> seatInfoList;
     private static final int COLUMNS = 5;
     private TextView txtSeatSelected;
     private SeatPresenter seatPresenter;
     private List<AbstractItem> items;
+
+    private AirplaneAdapter adapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +54,7 @@ public class SeatActivity extends AppCompatActivity implements SeatSelectionCont
                 items.add(new EmptyItem(String.valueOf(i)));
             }
         }
-
+        txtSeatSelected.setOnClickListener(this);
     }
 
 
@@ -72,7 +79,7 @@ public class SeatActivity extends AppCompatActivity implements SeatSelectionCont
         recyclerView.setHasFixedSize(true);
 
 
-        AirplaneAdapter adapter = new AirplaneAdapter(this, items, seatInfoList);
+        adapter = new AirplaneAdapter(this, items, seatInfoList);
         recyclerView.setAdapter(adapter);
         //come back to this
 
@@ -82,9 +89,26 @@ public class SeatActivity extends AppCompatActivity implements SeatSelectionCont
     }
 
     @Override
+    public void passengerDetails(int[] adjustSeats) {
+
+
+
+        Bundle bundle = new Bundle();
+        bundle.putIntArray("adjustSeats", adjustSeats);
+        Intent intent = new Intent(this, PassengerActivity.class);
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
+
+    @Override
     public void onSeatSelected(int count) {
 
         txtSeatSelected.setText("Book "+count+" seats");
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        seatPresenter.reserve(getIntent().getStringExtra("busid"), adapter.getSelectedItems());
     }
 }

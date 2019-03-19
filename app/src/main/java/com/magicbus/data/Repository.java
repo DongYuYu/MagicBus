@@ -3,6 +3,7 @@ package com.magicbus.data;
 import android.util.Log;
 
 import com.magicbus.data.entries.Login;
+import com.magicbus.data.entries.ReserveResponse;
 import com.magicbus.data.entries.ServiceListResponse;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -11,8 +12,11 @@ import retrofit2.Response;
 import com.magicbus.data.entries.CityResponse;
 import com.magicbus.data.network.ApiInterface;
 import com.magicbus.data.network.RetrofitInstance;
+import com.magicbus.reservation.SeatPresenter;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -25,6 +29,89 @@ public class Repository implements DataStructure {
 
 
 
+
+    Map<Integer, Integer> hash = new HashMap<>();
+
+
+
+
+    String[] seats = {"totalseat",
+            "seatone",
+            "seattwo",
+            "seatthree",
+            "seatfour",
+            "seatfive",
+
+
+            "seatsix",
+            "seatseven",
+
+            "seateight",
+            "seatnine",
+            "seatten",
+            "seateleven",
+            "seattwelve",
+            "seatthirteen",
+            "seatfourteen",
+            "seatfifteen",
+            "seatsixteen",
+            "seatseventeen",
+            "seateighteen",
+            "seatnineteen",
+            "seattwenty",
+            "seattwentyone",
+            "seattwentytwo",
+            "seattwentythree",
+            "seattwentyfour",
+            "seattwentyfive",
+            "seattwentysix",
+            "seattwentyseven",
+            "seattwentyeight",
+
+            "seattwentynine",
+            "seatthirty",
+            "seatthirtyone",
+            "seatthirtytwo",
+            "seatthirtythree",
+            "seatthirtyfour",
+            "seatthirtyfive",
+            "seatthirtysix",
+            "seatthirtyseven",
+            "seatthirtyeight",
+            "seatthirtynine",
+            "seatforty",
+            "seatfortyone",
+            "seatfortytwo",
+            "seatfortythree",
+            "seatfortyfour",
+            "seatfourtyfive",
+            "seatfortysix",
+            "seatfourtyseven"};
+
+    {
+        for (int i = 0; i < 59; i++) {
+
+            int row = i / 5;
+
+            int col = i % 5;
+            if (col == 2) {
+                hash.put(i, -1);
+            }else if (col < 2) {
+                hash.put(i, i - row + 1);
+            }else {
+
+
+
+
+
+
+
+
+                hash.put(i, i - row - 1 + 1);
+            }
+
+        }
+    }
     ApiInterface apiInterface = RetrofitInstance.getRetrofitInstance().create(ApiInterface.class);
     public static Repository getRepository(){
         if (repository == null) {
@@ -135,5 +222,41 @@ public class Repository implements DataStructure {
     }
 
 
+    public void reserve(String busid, List<Integer> selectedSeat, OnReserveCallBack onReserveCallBack) {
 
+
+
+
+
+        int n = selectedSeat.size();
+        int[] adjustSeat = new int[n];
+        Map<String, String> data = new HashMap<>();
+
+        data.put("busid", busid);
+
+        for (int i = 0; i < n; i++) {
+
+
+
+            int adjPostion = hash.get(selectedSeat.get(i));
+            adjustSeat[i] = adjPostion;
+            data.put(seats[adjPostion], String.valueOf(1));
+
+        }
+
+
+        Call<ReserveResponse> reserveResponseCall = apiInterface.getReserveResponse(data);
+        reserveResponseCall.enqueue(new Callback<ReserveResponse>() {
+            @Override
+            public void onResponse(Call<ReserveResponse> call, Response<ReserveResponse> response) {
+                Log.d("reserved", response.body().getResponses().get(0));
+                onReserveCallBack.reserveRecieved(response.body().getResponses().get(0), adjustSeat);
+            }
+
+            @Override
+            public void onFailure(Call<ReserveResponse> call, Throwable t) {
+                Log.d("reserved", t.getMessage());
+            }
+        });
+    }
 }

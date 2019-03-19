@@ -1,6 +1,7 @@
 package com.magicbus.data.network;
 
 import com.magicbus.data.entries.Login;
+import com.magicbus.data.entries.ReserveResponse;
 import com.magicbus.data.entries.ResponseSeatInfo;
 import com.magicbus.data.entries.ServiceListResponse;
 import com.magicbus.data.entries.Login;
@@ -12,13 +13,16 @@ import com.magicbus.data.entries.PasswordResponse;
 import com.magicbus.data.entries.ResponseBusInfo;
 
 import java.util.List;
+import java.util.Map;
 
+import io.reactivex.Observable;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
+import retrofit2.http.QueryMap;
 
 public interface ApiInterface {
 
@@ -60,11 +64,16 @@ public interface ApiInterface {
     Call<List<Login>> getLoginResponse(@Field("mobile") String mobile,
                                        @Field("password") String password);
 
+    //@FormUrlEncoded
+    //@POST("seatinfo.php")
+    //Call<ResponseSeatInfo>  getSeatInfoResponse(@Field("busid") String bus_id);
+
+
+
+
     @FormUrlEncoded
     @POST("seatinfo.php")
-    Call<ResponseSeatInfo>  getSeatInfoResponse(@Field("busid") String bus_id);
-
-
+    Observable<ResponseSeatInfo> getSeatInfoResponse(@Field("busid") String bus_id);
     @GET("city.php")
     Call<CityResponse> getCity();
 
@@ -75,4 +84,11 @@ public interface ApiInterface {
     @FormUrlEncoded
     @POST("businfo.php")
     Call<ResponseBusInfo> getBusInfoResponse(@Field("routeid") String route_id);
+    @GET("chooseseat.php")
+
+
+
+
+
+    Call<ReserveResponse> getReserveResponse(@QueryMap Map<String, String> options);
 }
