@@ -10,44 +10,32 @@ import android.widget.Button;
 
 import com.magicbus.R;
 import com.magicbus.adapter.PassengerAdapter;
+import com.magicbus.data.entries.Passenger;
+
+import java.util.List;
 
 public class PassengerActivity extends AppCompatActivity implements View.OnClickListener {
-    RecyclerView rv;
-
-
-
-
-
-
-
-
-    PassengerAdapter adapter;
-    Button button;
+    private RecyclerView rv;
+    private PassengerAdapter adapter;
+    private Button button;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_passenger);
         rv = findViewById(R.id.rvPassenger);
-
-
-
         rv.setHasFixedSize(true);
         rv.setLayoutManager(new LinearLayoutManager(this));
         adapter = new PassengerAdapter(getIntent().getIntArrayExtra("adjustSeats"));
         rv.setAdapter(adapter);
-
         button = findViewById(R.id.button);
-
         button.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
 
-
-
-
-
-        Log.d("Passenger", adapter.getPassengers()[0].getPassengername());
+        Passenger[] passengers = adapter.getPassengers();
+        Log.d("Passenger", passengers.toString());
     }
 }

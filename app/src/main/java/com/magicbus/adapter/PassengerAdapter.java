@@ -15,17 +15,10 @@ import com.magicbus.data.entries.Passenger;
 
 public class PassengerAdapter extends RecyclerView.Adapter<PassengerAdapter.PassengerViewHolder> {
 
-
-
-
-
-
-
-
     private Passenger[] passengers;
-
-
     private int[] adjustSeats;
+
+
     public PassengerAdapter(int[] adjustSeats) {
         this.adjustSeats = adjustSeats;
 
@@ -34,6 +27,8 @@ public class PassengerAdapter extends RecyclerView.Adapter<PassengerAdapter.Pass
 
             passengers[i] = new Passenger();
         }
+
+
     }
 
     @NonNull
@@ -48,6 +43,11 @@ public class PassengerAdapter extends RecyclerView.Adapter<PassengerAdapter.Pass
 
     @Override
     public void onBindViewHolder(@NonNull PassengerViewHolder passengerViewHolder, int i) {
+
+
+        passengerViewHolder.tvSeatNum.setText(String.valueOf(adjustSeats[i]));
+
+
         passengerViewHolder.etPname.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -64,6 +64,39 @@ public class PassengerAdapter extends RecyclerView.Adapter<PassengerAdapter.Pass
 
             }
         });
+        passengerViewHolder.etAge.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                passengers[i].setPassengerage(s.toString());
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        passengerViewHolder.etGender.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                passengers[i].setPassengergender(s.toString());
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
     }
 
     @Override
@@ -76,12 +109,15 @@ public class PassengerAdapter extends RecyclerView.Adapter<PassengerAdapter.Pass
         TextView tvSeatNum;
 
         EditText etPname;
+        EditText etGender;
+        EditText etAge;
         public PassengerViewHolder(@NonNull View itemView) {
             super(itemView);
             tvSeatNum = itemView.findViewById(R.id.seatNum);
 
             etPname = itemView.findViewById(R.id.pName);
-
+            etGender = itemView.findViewById(R.id.gender);
+            etAge = itemView.findViewById(R.id.age);
         }
     }
 

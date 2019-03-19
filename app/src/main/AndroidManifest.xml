@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".passenger.PassengerActivity"></activity>
+        <activity android:name=".passenger.PassengerActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan"></activity>
         <activity android:name=".reservation.SeatActivity" />
         <activity
             android:name=".search.SearchActivity"
