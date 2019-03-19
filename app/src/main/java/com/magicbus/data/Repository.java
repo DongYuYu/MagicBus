@@ -2,6 +2,9 @@ package com.magicbus.data;
 
 import android.util.Log;
 
+import com.magicbus.data.entries.Coupons;
+import com.magicbus.data.entries.CouponsResponse;
+import com.magicbus.data.entries.CouponsValidation;
 import com.magicbus.data.entries.Login;
 import com.magicbus.data.entries.ReserveResponse;
 import com.magicbus.data.entries.ServiceListResponse;
@@ -150,14 +153,8 @@ public class Repository implements DataStructure {
             @Override
             public void onResponse(Call<ServiceListResponse> call, Response<ServiceListResponse> response) {
                 ServiceListResponse serviceListResponse = response.body();
-
                 Log.d("ServiceList Response", serviceListResponse.toString());
-
-
-
-
                 callback.serviceListCallback(serviceListResponse.getServiceList());
-
             }
 
             @Override
@@ -176,8 +173,6 @@ public class Repository implements DataStructure {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
 
-
-
                 String registerResponse = response.body();
                 String uri = response.raw().request().url().toString();
 
@@ -194,6 +189,7 @@ public class Repository implements DataStructure {
             }
         });
     }
+
     public void getCities(final OnCityCallBack onCityCallBack) {
 
         final Call<CityResponse> cityResponseCall = apiInterface.getCity();
@@ -205,13 +201,6 @@ public class Repository implements DataStructure {
                     Log.d("Retrofit", cityResponse.toString());
                 }
 
-
-
-
-
-
-
-
                 @Override
                 public void onFailure(Call<CityResponse> call, Throwable t) {
                     Log.d("Retrofit", t.getMessage());
@@ -221,11 +210,40 @@ public class Repository implements DataStructure {
             });
     }
 
+    public void getCoupons(final CouponsCallback couponsCallback) {
+
+        ApiInterface apiInterface = RetrofitInstance.getRetrofitInstance().create(ApiInterface.class);
+        Call<CouponsResponse> couponsList = apiInterface.getCouponsResponse();
+
+        couponsList.enqueue(new Callback<CouponsResponse>() {
+            @Override
+            public void onResponse(Call<CouponsResponse> call, Response<CouponsResponse> response) {
+                CouponsResponse couponsResponse = response.body();
+                Log.d("Coupons", couponsResponse.toString());
+                couponsCallback.couponsCallback(couponsResponse.getCouponsList());
+            }
+
+            @Override
+            public void onFailure(Call<CouponsResponse> call, Throwable t) {
+                Log.e("Coupons", t.getMessage());
+            }
+        });
+    }
+
+    public void getCouponsValidation(String couponno, final CouponsValidationCallback couponsValidationCallback) {
+        ApiInterface apiInterface = RetrofitInstance.getRetrofitInstance().create(ApiInterface.class);
+        Call<List<CouponsValidation>> couponsValidation = apiInterface.getCouponsValidationResponse(couponno);
 
     public void reserve(String busid, List<Integer> selectedSeat, OnReserveCallBack onReserveCallBack) {
 
 
 
+        couponsValidation.enqueue(new Callback<List<CouponsValidation>>() {
+            @Override
+            public void onResponse(Call<List<CouponsValidation>> call, Response<List<CouponsValidation>> response) {
+                Log.d("Coupons Validation", response.toString());
+                couponsValidationCallback.couponsValidationCallback(response.body());
+            }
 
 
         int n = selectedSeat.size();
@@ -258,5 +276,13 @@ public class Repository implements DataStructure {
                 Log.d("reserved", t.getMessage());
             }
         });
+    }
+            @Override
+            public void onFailure(Call<List<CouponsValidation>> call, Throwable t) {
+                Log.e("Coupons Validation", t.getMessage());
+            }
+        });
+
+
     }
 }

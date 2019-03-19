@@ -1,5 +1,8 @@
 package com.magicbus.data.network;
 
+import com.magicbus.data.entries.Coupons;
+import com.magicbus.data.entries.CouponsResponse;
+import com.magicbus.data.entries.CouponsValidation;
 import com.magicbus.data.entries.Login;
 import com.magicbus.data.entries.ReserveResponse;
 import com.magicbus.data.entries.ResponseSeatInfo;
@@ -91,4 +94,12 @@ public interface ApiInterface {
 
 
     Call<ReserveResponse> getReserveResponse(@QueryMap Map<String, String> options);
+
+    @GET("coupon_list.php")
+    Call<CouponsResponse> getCouponsResponse();
+
+    @FormUrlEncoded
+    @POST("coupon_validation.php")
+    Call<List<CouponsValidation>> getCouponsValidationResponse(@Field("couponno") String couponno);
+
 }
