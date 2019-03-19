@@ -1,5 +1,8 @@
 package com.magicbus.data.network;
 
+import com.magicbus.data.entries.Coupons;
+import com.magicbus.data.entries.CouponsResponse;
+import com.magicbus.data.entries.CouponsValidation;
 import com.magicbus.data.entries.Login;
 import com.magicbus.data.entries.ResponseSeatInfo;
 import com.magicbus.data.entries.ServiceListResponse;
@@ -75,4 +78,12 @@ public interface ApiInterface {
     @FormUrlEncoded
     @POST("businfo.php")
     Call<ResponseBusInfo> getBusInfoResponse(@Field("routeid") String route_id);
+
+    @GET("coupon_list.php")
+    Call<CouponsResponse> getCouponsResponse();
+
+    @FormUrlEncoded
+    @POST("coupon_validation.php")
+    Call<List<CouponsValidation>> getCouponsValidationResponse(@Field("couponno") String couponno);
+
 }
