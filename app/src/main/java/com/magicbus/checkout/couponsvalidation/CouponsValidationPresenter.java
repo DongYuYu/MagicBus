@@ -1,6 +1,5 @@
 package com.magicbus.checkout.couponsvalidation;
 
-import com.magicbus.checkout.coupons.CouponsContract;
 import com.magicbus.data.DataStructure;
 import com.magicbus.data.Repository;
 import com.magicbus.data.entries.CouponsValidation;
@@ -18,13 +17,13 @@ public class CouponsValidationPresenter implements CouponsValidationContract.Pre
     }
 
     @Override
-    public void sendRequest(String couponno) {
+    public void sendCouponsValidationRequest(String couponno) {
         repository.getCouponsValidation(couponno, this);
 
     }
 
     @Override
     public void couponsValidationCallback(List<CouponsValidation> response) {
-        view.getResponse(response);
+        view.getCouponsValidationResponse(response);
     }
 }

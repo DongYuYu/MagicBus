@@ -36,7 +36,7 @@ public class CheckoutFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_checkout, container, false);
+        View view = inflater.inflate(R.layout.frag_checkout, container, false);
 
         boardingTextView = view.findViewById(R.id.tv_boarding);
         droppingTextView = view.findViewById(R.id.tv_dropping);
