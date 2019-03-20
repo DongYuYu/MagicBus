@@ -40,9 +40,14 @@
         android:id="@+id/tvSeatNo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="22"
+        android:layout_marginStart="23dp"
 
+        android:layout_marginTop="7dp"
+        android:text="22"
+        android:textColor="@color/icons"
+        android:gravity="center"
         android:textSize="12sp"
+        android:textStyle="bold"
         tools:layout_editor_absoluteX="198dp"
         tools:layout_editor_absoluteY="26dp" />
 
