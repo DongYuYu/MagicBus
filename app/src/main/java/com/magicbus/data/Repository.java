@@ -1,5 +1,8 @@
 package com.magicbus.data;
 
+import android.app.Application;
+import android.arch.lifecycle.LiveData;
+import android.os.AsyncTask;
 import android.util.Log;
 
 import com.magicbus.data.entries.Login;
@@ -11,13 +14,11 @@ import retrofit2.Response;
 import com.magicbus.data.entries.CityResponse;
 import com.magicbus.data.network.ApiInterface;
 import com.magicbus.data.network.RetrofitInstance;
+import com.magicbus.roomdb.Trip;
+import com.magicbus.roomdb.TripDao;
+import com.magicbus.roomdb.TripRoomDatabase;
 
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
 
 public class Repository implements DataStructure {
 
@@ -127,6 +128,10 @@ public class Repository implements DataStructure {
             });
     }
 
-
-
+    /////////////////////////////////////////////////////////////////////////////////////////
+    /**
+     *
+     */
 }
+
+

@@ -15,22 +15,11 @@ import retrofit2.Response;
 public interface DataStructure {
     interface OnRegisterCallBack {
         void onRegisterReceived(String response);
-
-
-
     }
-
-
-
-
-
-
-
 
     interface OnCityCallBack {
         void onCityReceived(List<City> cities);
     }
-
 
     interface LoginCallback {
         void loginCallback(List<Login> response);
