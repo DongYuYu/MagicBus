@@ -1,8 +1,10 @@
 package com.magicbus.search.city;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +19,7 @@ import com.magicbus.R;
 import com.magicbus.data.entries.City;
 import com.magicbus.search.servicelist.ServiceListFragment;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -43,6 +46,8 @@ public class CityFragment extends Fragment implements CityInterface.View, Adapte
 
     Spinner spinner2;
     Button button;
+
+    Button dateButton;
     private OnCityFragmentInteractionListener mListener;
 
     public CityFragment() {
@@ -110,7 +115,31 @@ public class CityFragment extends Fragment implements CityInterface.View, Adapte
 
         button = view.findViewById(R.id.btnSearch);
         button.setOnClickListener(this);
+
+
+
+
+        dateButton = view.findViewById(R.id.btnDate);
+
+        dateButton.setOnClickListener(this);
+
         return view;
+    }
+
+
+
+    public void processDatePickerResult(int year, int month, int day) {
+        String month_string = Integer.toString(month+1);
+        String day_string = Integer.toString(day);
+        String year_string = Integer.toString(year);
+        String dateMessage = (month_string +
+                "/" + day_string + "/" + year_string);
+        Toast.makeText(getActivity(), dateMessage, Toast.LENGTH_LONG).show();
+        SharedPreferences.Editor editor = getActivity().getSharedPreferences("default", Context.MODE_PRIVATE).edit();
+
+
+        editor.putString("journydate", dateMessage);
+        editor.apply();
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -119,7 +148,10 @@ public class CityFragment extends Fragment implements CityInterface.View, Adapte
             mListener.onFragmentInteraction(uri);
         }
     }
-
+    public void showDatePicker() {
+        DialogFragment newFragment = new DatePickerFragment(this);
+        newFragment.show(getActivity().getSupportFragmentManager(),"datePicker");
+    }
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -140,13 +172,29 @@ public class CityFragment extends Fragment implements CityInterface.View, Adapte
     @Override
     public void setCities(List<City> cities) {
         // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<City> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, cities);
+        List<City> fromCity = new ArrayList<>();
+        City from = new City("select");
+
+
+
+
+        fromCity.add(from);
+        fromCity.addAll(cities);
+
+
+
+        ArrayAdapter<City> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, fromCity);
 // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
 
         spinner2.setAdapter(adapter);
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        presenter.getCities();
     }
 
     @Override
@@ -174,51 +222,67 @@ public class CityFragment extends Fragment implements CityInterface.View, Adapte
 
     @Override
     public void onClick(View v) {
-        City from = (City) spinner.getSelectedItem();
-
-        City to = (City) spinner2.getSelectedItem();
-
-        String start_lat, start_long, end_lat, end_long;
-        start_lat = from.getCitylatitude();
-
-        start_long = from.getCitylongtitude();
-        end_lat = to.getCitylatitude();
-        end_long = to.getCitylongtitude();
-
-
-
-
-        Bundle args = new Bundle();
-        args.putString("start_lat", start_lat);
-
-        args.putString("start_long", start_long);
-        args.putString("end_lat", end_lat);
 
 
 
 
 
-        args.putString("end_long", end_long);
-        Fragment fg = new ServiceListFragment();
-        fg.setArguments(args);
+        switch(v.getId()) {
+            case R.id.btnSearch:
+            City from = (City) spinner.getSelectedItem();
+
+            City to = (City) spinner2.getSelectedItem();
+
+            String start_lat, start_long, end_lat, end_long;
+            start_lat = from.getCitylatitude();
+
+            start_long = from.getCitylongtitude();
+            end_lat = to.getCitylatitude();
+            end_long = to.getCitylongtitude();
+                Bundle args = new Bundle();
+                args.putString("start_lat", start_lat);
+
+                args.putString("start_long", start_long);
+                args.putString("end_lat", end_lat);
+
+
+
+
+
+                args.putString("end_long", end_long);
+                Fragment fg = new ServiceListFragment();
+                fg.setArguments(args);
 
 
 
 
 
 
-        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, fg)
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, fg)
 
 
 
 
-                .addToBackStack(null)
+                        .addToBackStack(null)
 
 
 
 
 
-                .commit();
+                        .commit();
+
+                break;
+
+
+
+
+
+            case R.id.btnDate:
+              showDatePicker();
+                break;
+        }
+
+
 
     }
 

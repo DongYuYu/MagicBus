@@ -4,120 +4,267 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primary_light"
-    tools:context=".search.businformation.BusInfoFrag">
+    android:background="#F4F4F4">
 
-
-    <TextView
-        android:id="@+id/tvBusid"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="134dp"
-        android:text="TextView"
-        android:textColor="@color/icons"
-        app:layout_constraintEnd_toEndOf="@+id/tvBusregistrationno"
-        app:layout_constraintStart_toStartOf="@+id/tvBusregistrationno"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tvBusregistrationno"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="37dp"
-        android:text="TextView"
-        android:textColor="@color/icons"
-        app:layout_constraintEnd_toEndOf="@+id/tvBustype"
-        app:layout_constraintStart_toStartOf="@+id/tvBustype"
-        app:layout_constraintTop_toBottomOf="@+id/tvBusid" />
-
-    <TextView
-        android:id="@+id/tvBustype"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="TextView"
-        android:textColor="@color/icons"
-        app:layout_constraintEnd_toEndOf="@+id/tvBusDeparturetime"
-        app:layout_constraintStart_toStartOf="@+id/tvBusDeparturetime"
-        app:layout_constraintTop_toBottomOf="@+id/tvBusregistrationno" />
-
-    <TextView
-        android:id="@+id/tvBusDeparturetime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="49dp"
-        android:layout_marginEnd="193dp"
-        android:text="TextView"
-        android:textColor="@color/icons"
-        app:layout_constraintEnd_toEndOf="@+id/tvJournyduration"
-        app:layout_constraintEnd_toStartOf="@+id/imageView3"
+    <RelativeLayout
+        android:id="@+id/relativeLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="406dp"
+        android:layout_marginTop="124dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvBustype" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/tvJournyduration"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="42dp"
-        android:text="TextView"
-        android:textColor="@color/icons"
-        app:layout_constraintEnd_toEndOf="@+id/tvFare"
-        app:layout_constraintStart_toStartOf="@+id/tvFare"
-        app:layout_constraintTop_toBottomOf="@+id/tvBusDeparturetime" />
+        <TextView
+            android:id="@+id/tvBusid"
+            android:layout_width="wrap_content"
+            android:layout_height="16dp"
+            android:layout_marginStart="200dp"
+            android:layout_marginTop="55dp"
+            android:elevation="4dp"
+            android:text="TextView"
+            android:textColor="@color/icons"
+            tools:layout_editor_absoluteX="76dp"
+            tools:layout_editor_absoluteY="172dp" />
 
-    <TextView
-        android:id="@+id/tvFare"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="40dp"
-        android:text="TextView"
-        android:textColor="@color/icons"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvJournyduration" />
+        <TextView
+            android:id="@+id/tvBusregistrationno"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_marginStart="200dp"
+            android:layout_marginTop="305dp"
+            android:elevation="4dp"
+            android:text="TextView"
+            android:textColor="@color/icons"
+            tools:layout_editor_absoluteX="76dp"
+            tools:layout_editor_absoluteY="237dp" />
+
+        <TextView
+            android:id="@+id/tvBustype"
+            android:layout_width="wrap_content"
+            android:layout_height="16dp"
+            android:layout_marginStart="200dp"
+            android:layout_marginTop="255dp"
+            android:elevation="4dp"
+            android:text="TextView"
+            android:textColor="@color/icons"
+            tools:layout_editor_absoluteX="77dp"
+            tools:layout_editor_absoluteY="358dp" />
+
+        <TextView
+            android:id="@+id/tvBusDeparturetime"
+            android:layout_width="wrap_content"
+            android:layout_height="16dp"
+            android:layout_marginStart="200dp"
+            android:layout_marginTop="205dp"
+            android:elevation="4dp"
+            android:text="TextView"
+            android:textColor="@color/icons"
+            tools:layout_editor_absoluteX="76dp"
+            tools:layout_editor_absoluteY="437dp" />
+
+        <TextView
+            android:id="@+id/tvJournyduration"
+            android:layout_width="wrap_content"
+            android:layout_height="16dp"
+
+            android:layout_marginStart="200dp"
+            android:layout_marginTop="155dp"
+            android:elevation="4dp"
+            android:text="TextView"
+            android:textColor="@color/icons"
+            tools:layout_editor_absoluteX="76dp"
+            tools:layout_editor_absoluteY="299dp" />
+
+        <TextView
+            android:id="@+id/tvFare"
+            android:layout_width="wrap_content"
+            android:layout_height="19dp"
+            android:layout_marginStart="200dp"
+            android:layout_marginTop="105dp"
+            android:elevation="4dp"
+            android:text="TextView"
+            android:textColor="@color/icons"
+            tools:layout_editor_absoluteX="78dp"
+            tools:layout_editor_absoluteY="506dp" />
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="160dp"
+            android:layout_marginTop="50dp"
+            android:src="@drawable/ic_radio_button_checked_black_24dp"
+            tools:layout_editor_absoluteX="36dp"
+            tools:layout_editor_absoluteY="163dp" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="160dp"
+            android:layout_marginTop="200dp"
+            android:src="@drawable/ic_radio_button_checked_black_24dp"
+            tools:layout_editor_absoluteX="36dp"
+            tools:layout_editor_absoluteY="293dp" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="160dp"
+            android:layout_marginTop="150dp"
+            android:src="@drawable/ic_radio_button_checked_black_24dp"
+            tools:layout_editor_absoluteX="36dp"
+            tools:layout_editor_absoluteY="354dp" />
+
+        <ImageView
+            android:id="@+id/imageView12"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="160dp"
+            android:layout_marginTop="300dp"
+            android:src="@drawable/ic_radio_button_checked_black_24dp"
+            tools:layout_editor_absoluteX="36dp"
+            tools:layout_editor_absoluteY="430dp" />
+
+        <ImageView
+            android:id="@+id/imageView14"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="160dp"
+            android:layout_marginTop="100dp"
+            android:src="@drawable/ic_radio_button_checked_black_24dp"
+            tools:layout_editor_absoluteX="36dp"
+            tools:layout_editor_absoluteY="501dp" />
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="4dp"
+            android:layout_height="268dp"
+            android:layout_marginStart="140dp"
+            android:layout_marginTop="56dp"
+            app:srcCompat="@color/primary" />
+
+        <ImageView
+            android:id="@+id/imageView13"
+            android:layout_width="85dp"
+            android:layout_height="99dp"
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="132dp"
+            app:srcCompat="@mipmap/ic_launcher_round" />
+
+        <TextView
+            android:id="@+id/tvBoardingTime2"
+            android:layout_width="wrap_content"
+            android:layout_height="19dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="50dp"
+            android:elevation="4dp"
+            android:text="TextView"
+            android:textColor="@color/icons" />
+
+        <TextView
+            android:id="@+id/tvDropingTime2"
+            android:layout_width="wrap_content"
+            android:layout_height="19dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="305dp"
+            android:elevation="4dp"
+            android:text="TextView"
+            android:textColor="@color/icons" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="160dp"
+            android:layout_marginTop="250dp"
+            android:src="@drawable/ic_radio_button_checked_black_24dp"
+            tools:layout_editor_absoluteX="36dp"
+            tools:layout_editor_absoluteY="233dp" />
+
+
+    </RelativeLayout>
+
 
     <TextView
         android:id="@+id/tvBoardingTime"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="31dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="19dp"
+        android:elevation="4dp"
         android:text="TextView"
         android:textColor="@color/icons"
-        app:layout_constraintStart_toStartOf="@+id/tvFare"
-        app:layout_constraintTop_toBottomOf="@+id/tvFare" />
+        app:layout_constraintBottom_toBottomOf="@+id/tvDropingTime"
+        app:layout_constraintStart_toStartOf="@+id/tvBoardTime"
+        app:layout_constraintTop_toTopOf="@+id/tvDropingTime" />
 
     <TextView
         android:id="@+id/tvDropingTime"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="34dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="13dp"
+        android:elevation="4dp"
         android:text="TextView"
         android:textColor="@color/icons"
-        app:layout_constraintStart_toStartOf="@+id/tvBoardingTime"
-        app:layout_constraintTop_toBottomOf="@+id/tvBoardingTime" />
+        app:layout_constraintStart_toStartOf="@+id/tvBoardTime2"
+        app:layout_constraintTop_toBottomOf="@+id/tvBoardTime2" />
 
     <Button
         android:id="@+id/btn_BusSeat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginBottom="44dp"
-        android:background="@color/primary_text"
-        android:text="SELECTED SEAT"
-        android:textColor="@android:color/white"
+        android:layout_marginStart="36dp"
+        android:layout_marginBottom="51dp"
+        android:background="#FFFFDC73"
+        android:backgroundTintMode="multiply"
+        android:elevation="4dp"
+        android:text="Select Seat"
+        android:textColor="@color/icons"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="0dp"
-        android:layout_height="95dp"
-        android:layout_marginEnd="16dp"
-        android:src="@drawable/car"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <TextView
+        android:id="@+id/tvBoardTime"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginEnd="28dp"
+        android:fontFamily="monospace"
+        android:text="BOARDING TIME"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/tvBoardTime2"
+        app:layout_constraintEnd_toStartOf="@+id/imageView4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView4" />
+
+    <TextView
+        android:id="@+id/tvBoardTime2"
+        android:layout_width="wrap_content"
+        android:layout_height="22dp"
+
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="36dp"
+        android:fontFamily="monospace"
+        android:text="ARRIVAL TIME"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tvBusDeparturetime"
+        app:layout_constraintStart_toEndOf="@+id/imageView4"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="0dp"
+        android:layout_height="35dp"
+        android:layout_marginEnd="38dp"
+        android:src="@drawable/ic_arrow_forward_black_24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvBoardTime2"
+        app:layout_constraintEnd_toStartOf="@+id/tvBoardTime2"
+        app:layout_constraintStart_toEndOf="@+id/tvBoardTime"
+        app:layout_constraintTop_toBottomOf="@+id/tvBoardTime2" />
+
 
 </android.support.constraint.ConstraintLayout>

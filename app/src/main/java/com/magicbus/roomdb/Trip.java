@@ -26,6 +26,7 @@ public class Trip {
     private String passengerid;
     private String passengeremail;
     private String passengermobile;
+
     private String selectedseat;
     private String passengername;
     private String passengerage;

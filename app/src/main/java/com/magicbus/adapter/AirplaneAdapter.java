@@ -149,8 +149,6 @@ public class AirplaneAdapter extends SelectableAdapter<RecyclerView.ViewHolder> 
 
         int type = mItems.get(position).getType();
           int value =  Integer.valueOf(mItems.get(position).getLabel());  //position == label?
-        Log.d(TAG, "onBindViewHolder: checking the position clicked" + position);
-      //  Log.d(TAG, "onBindViewHolder: " + seatInfoList.get(0).);
 
         if (type == AbstractItem.TYPE_CENTER) {
             final CenterItem item = (CenterItem) mItems.get(position);

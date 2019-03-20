@@ -45,9 +45,10 @@ public class PassengerAdapter extends RecyclerView.Adapter<PassengerAdapter.Pass
     public void onBindViewHolder(@NonNull PassengerViewHolder passengerViewHolder, int i) {
 
 
-        passengerViewHolder.tvSeatNum.setText(String.valueOf(adjustSeats[i]));
+        passengerViewHolder.tvSeatNum.setText("SeatNo " + String.valueOf(adjustSeats[i]));
 
 
+        passengers[i].setSelectedseat(String.valueOf(adjustSeats[i]));
         passengerViewHolder.etPname.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

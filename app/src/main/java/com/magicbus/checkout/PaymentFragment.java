@@ -2,9 +2,13 @@ package com.magicbus.checkout;
 
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,13 +20,19 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.magicbus.R;
 import com.magicbus.checkout.coupons.CouponsContract;
 import com.magicbus.checkout.coupons.CouponsPresenter;
 import com.magicbus.checkout.couponsvalidation.CouponsValidationContract;
 import com.magicbus.checkout.couponsvalidation.CouponsValidationPresenter;
+import com.magicbus.data.entries.BusInformation;
 import com.magicbus.data.entries.Coupons;
 import com.magicbus.data.entries.CouponsValidation;
+import com.magicbus.roomdb.Trip;
+import com.magicbus.roomdb.TripDao;
+import com.magicbus.roomdb.TripHistoryActivity;
+import com.magicbus.roomdb.TripRoomDatabase;
 import com.paypal.android.sdk.payments.PayPalAuthorization;
 import com.paypal.android.sdk.payments.PayPalConfiguration;
 import com.paypal.android.sdk.payments.PayPalFuturePaymentActivity;
@@ -43,6 +53,8 @@ import java.util.List;
 
 public class PaymentFragment extends Fragment implements CouponsContract.View, CouponsValidationContract.View {
 
+    TripRoomDatabase db;
+    private TripDao mTripDao;
     private static final String TAG = "paymentExample";
     private static final String CONFIG_ENVIRONMENT = PayPalConfiguration.ENVIRONMENT_NO_NETWORK;
     private static final String CONFIG_CLIENT_ID = "credentials from developer.paypal.com";
@@ -90,8 +102,13 @@ public class PaymentFragment extends Fragment implements CouponsContract.View, C
         this.et_coupon = view.findViewById(R.id.et_coupon);
         this.button_coupon = view.findViewById(R.id.button_coupon);
         this.button_paypal = view.findViewById(R.id.button_paypal);
+        String bus = getActivity().getSharedPreferences("default", Context.MODE_PRIVATE).getString("busInfo", "");
+        Gson gson = new Gson();
+        BusInformation busInformation = gson.fromJson(bus, BusInformation.class);
 
-        tv_baseFare.setText("500");
+
+
+        tv_baseFare.setText(String.valueOf(Integer.parseInt(busInformation.getFare()) * getArguments().getInt("quantity", 1)));
         tv_tax.setText(calculateTax(tv_baseFare.getText().toString()));
         tv_total.setText(calculateTotal(tv_baseFare.getText().toString(), tv_tax.getText().toString()));
 
@@ -131,6 +148,13 @@ public class PaymentFragment extends Fragment implements CouponsContract.View, C
 
         return view;
 
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        db = TripRoomDatabase.getDatabase(getActivity());
+        mTripDao = db.tripDao();
     }
 
     public String calculateTax(String baseFare) {
@@ -177,7 +201,11 @@ public class PaymentFragment extends Fragment implements CouponsContract.View, C
 
     private PayPalPayment getThingToBuy(String paymentIntent) {
         return new PayPalPayment(
-                new BigDecimal("100"), "USD", "Ticket Cost",
+
+
+
+
+                new BigDecimal(String.valueOf(totalPrice)), "USD", "Ticket Cost",
                 paymentIntent);
     }
 
@@ -186,6 +214,45 @@ public class PaymentFragment extends Fragment implements CouponsContract.View, C
         Toast.makeText(getContext().getApplicationContext(), result, Toast.LENGTH_LONG).show();
     }
 
+    public void storeHistory() {
+        SharedPreferences sf = getActivity().getSharedPreferences("default", Context.MODE_PRIVATE);
+        String token_id = sf.getString("token_id", "");
+
+
+
+
+
+        String busInfo = sf.getString("busInfo", "");
+        Gson gson = new Gson();
+
+        BusInformation busInformation = gson.fromJson(busInfo, BusInformation.class);
+        String route_name = busInformation.getBusregistrationno();
+        String busid = busInformation.getBusid();
+        String fare = String.valueOf(totalPrice);
+        String coupondiscount = "";
+        String servicetax = "";
+        String journydate = sf.getString("journydate", "");
+        String boardingtime = busInformation.getBoardingtime();
+        String droppingtime = busInformation.getDropingtime();
+        String duration = busInformation.getJournyduration();
+        String passengerid = "";
+        String passengeremail = sf.getString("passengeremail", "");
+        String passengermobile = "";
+
+
+
+
+        String selectedseat = sf.getString("selectedseat", "");
+        String passengername = sf.getString("passengername", "");
+        String passengerage = sf.getString("passengerage", "");
+        String passengergender = sf.getString("passengergender", "");
+
+        Trip trip = new Trip(token_id, route_name, busid, fare, coupondiscount, servicetax,
+                journydate, boardingtime, droppingtime, duration, passengerid,
+                passengeremail, passengermobile, selectedseat, passengername, passengerage,
+                passengergender);
+        insert(trip);
+    }
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_CODE_PAYMENT) {
@@ -205,7 +272,31 @@ public class PaymentFragment extends Fragment implements CouponsContract.View, C
                          * For sample mobile backend interactions, see
                          * https://github.com/paypal/rest-api-sdk-python/tree/master/samples/mobile_backend
                          */
+//                        Intent email = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto",EMAIL ADDRESS HERE, null));
+//                        email.putExtra(Intent.EXTRA_SUBJECT, "ORDER CONFIRMATION");
+//                        email.putExtra(Intent.EXTRA_TEXT,"Thanks for using our Services. Below are your bus details /n" +
+//                                        "Token number is " + token_id + "/n" + "route name is: " + route_name + "/n" +
+//                                        "Journey Day is" + journydate + "/n" + "Boarding time is at " + boardingtime + "/n" +
+//                                "Your passenger id is " + passengerid + "/n" + "your seat number is " + selectedSeat);
+//                        startActivity(Intent.createChooser(email, "Send email..."));
                         displayResultText("PaymentConfirmation info received from PayPal");
+
+
+
+
+
+
+
+                        SharedPreferences.Editor editor = getActivity().getSharedPreferences("default", Context.MODE_PRIVATE).edit();
+
+
+
+
+                        editor.putString("token_id", confirm.getProofOfPayment().getTransactionId()).apply();
+
+
+                        storeHistory();
+
 
 
                     } catch (JSONException e) {
@@ -246,6 +337,31 @@ public class PaymentFragment extends Fragment implements CouponsContract.View, C
         }
     }
 
+    public void insert (Trip trip) {
+        new insertAsyncTask(mTripDao).execute(trip);
+        //   adapter.notifyDataSetChanged();
+    }
+
+
+    private static class insertAsyncTask extends AsyncTask<Trip, Void, Void> {
+
+        private TripDao mAsyncTaskDao;
+
+        insertAsyncTask(TripDao dao) {
+            mAsyncTaskDao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(final Trip... params) {
+            mAsyncTaskDao.insert(params[0]);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+        }
+    }
     private void sendAuthorizationToServer(PayPalAuthorization authorization) {
 
         /**

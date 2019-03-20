@@ -3,6 +3,7 @@ package com.magicbus.roomdb;
 import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
+import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
 
 import com.magicbus.roomdb.Trip;
@@ -13,7 +14,7 @@ import java.util.List;
 public interface TripDao {
 
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Trip trip);
 
     @Query("DELETE FROM Trip_Info")

@@ -143,11 +143,11 @@
                     tools:layout_editor_absoluteY="467dp" />
 
                 <EditText
-                    android:id="@+id/et_mobile"
+                    android:id="@+id/et_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:hint="Please enter your mobile number:"
+                    android:hint="Please enter your email address."
                     android:inputType="textPersonName" />
 
                 <android.support.constraint.ConstraintLayout

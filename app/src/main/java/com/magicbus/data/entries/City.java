@@ -10,7 +10,18 @@ public class City {
     private String cityname;
     private String citylatitude;
     private String citylongtitude;
+    public City(String cityname) {
+        this.cityname = cityname;
+        citylatitude = "";
 
+
+
+
+
+
+
+        citylongtitude = "";
+    }
     public String getCityname() {
         return cityname;
     }
