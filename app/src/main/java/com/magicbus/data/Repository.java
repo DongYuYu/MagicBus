@@ -2,6 +2,7 @@ package com.magicbus.data;
 
 import android.app.Application;
 import android.arch.lifecycle.LiveData;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -36,6 +37,12 @@ public class Repository implements DataStructure {
 
     private static Repository repository;
 
+
+
+
+
+
+    private SharedPreferences sf;
 
     Map<Integer, Integer> hash = new HashMap<>();
 
@@ -105,13 +112,17 @@ public class Repository implements DataStructure {
                 hash.put(i, i - row + 1);
             } else {
 
-
                 hash.put(i, i - row - 1 + 1);
             }
 
         }
     }
-
+    public void setSharePreference(SharedPreferences sf) {
+        this.sf = sf;
+    }
+    public SharedPreferences getSharePreference() {
+        return sf;
+    }
     ApiInterface apiInterface = RetrofitInstance.getRetrofitInstance().create(ApiInterface.class);
 
     public static Repository getRepository() {

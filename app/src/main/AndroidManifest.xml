@@ -45,7 +45,9 @@
 
 
         </activity>
-        <activity android:name=".checkout.CheckoutActivity"/>
+        <activity android:name=".checkout.CheckoutActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

@@ -19,13 +19,16 @@ import android.view.MenuItem;
 
 import com.magicbus.authentication.login.LoginFragment;
 import com.magicbus.authentication.registration.RegistrationFragment;
+import com.magicbus.data.Repository;
 import com.magicbus.reservation.SeatActivity;
+import com.magicbus.roomdb.TripHistoryActivity;
 import com.magicbus.search.city.CityFragment;
 
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, CityFragment.OnCityFragmentInteractionListener {
 
+    Repository repository;  //fix
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +44,12 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+
+
+
+
+        repository = Repository.getRepository();
+        repository.setSharePreference(getSharedPreferences("default", MODE_PRIVATE));
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -123,6 +132,11 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_slideshow) {
 
+
+
+
+            Intent intent = new Intent(this, TripHistoryActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
