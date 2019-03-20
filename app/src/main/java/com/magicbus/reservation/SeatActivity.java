@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.magicbus.R;
 import com.magicbus.adapter.AirplaneAdapter;
+import com.magicbus.checkout.CheckoutActivity;
 import com.magicbus.data.entries.AbstractItem;
 import com.magicbus.data.entries.CenterItem;
 import com.magicbus.data.entries.EdgeItem;
@@ -95,7 +96,7 @@ public class SeatActivity extends AppCompatActivity implements SeatSelectionCont
 
         Bundle bundle = new Bundle();
         bundle.putIntArray("adjustSeats", adjustSeats);
-        Intent intent = new Intent(this, PassengerActivity.class);
+        Intent intent = new Intent(this, CheckoutActivity.class);
         intent.putExtras(bundle);
         startActivity(intent);
     }
