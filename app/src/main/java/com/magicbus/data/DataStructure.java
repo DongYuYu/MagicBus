@@ -25,7 +25,6 @@ public interface DataStructure {
         void onCityReceived(List<City> cities);
     }
 
-
     interface LoginCallback {
         void loginCallback(List<Login> response);
     }

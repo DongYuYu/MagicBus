@@ -1,5 +1,8 @@
 package com.magicbus.data;
 
+import android.app.Application;
+import android.arch.lifecycle.LiveData;
+import android.os.AsyncTask;
 import android.util.Log;
 
 import com.magicbus.data.entries.Coupons;
@@ -16,6 +19,9 @@ import com.magicbus.data.entries.CityResponse;
 import com.magicbus.data.network.ApiInterface;
 import com.magicbus.data.network.RetrofitInstance;
 import com.magicbus.reservation.SeatPresenter;
+import com.magicbus.roomdb.Trip;
+import com.magicbus.roomdb.TripDao;
+import com.magicbus.roomdb.TripRoomDatabase;
 
 import java.util.HashMap;
 import java.util.List;
@@ -31,11 +37,7 @@ public class Repository implements DataStructure {
     private static Repository repository;
 
 
-
-
     Map<Integer, Integer> hash = new HashMap<>();
-
-
 
 
     String[] seats = {"totalseat",
@@ -99,15 +101,9 @@ public class Repository implements DataStructure {
             int col = i % 5;
             if (col == 2) {
                 hash.put(i, -1);
-            }else if (col < 2) {
+            } else if (col < 2) {
                 hash.put(i, i - row + 1);
-            }else {
-
-
-
-
-
-
+            } else {
 
 
                 hash.put(i, i - row - 1 + 1);
@@ -115,8 +111,10 @@ public class Repository implements DataStructure {
 
         }
     }
+
     ApiInterface apiInterface = RetrofitInstance.getRetrofitInstance().create(ApiInterface.class);
-    public static Repository getRepository(){
+
+    public static Repository getRepository() {
         if (repository == null) {
             repository = new Repository();
         }
@@ -136,6 +134,7 @@ public class Repository implements DataStructure {
                     callback.loginCallback(response.body());
                 }
             }
+
             @Override
             public void onFailure(Call<List<Login>> call, Throwable t) {
                 Log.e("Login Response", t.getMessage());
@@ -193,21 +192,21 @@ public class Repository implements DataStructure {
     public void getCities(final OnCityCallBack onCityCallBack) {
 
         final Call<CityResponse> cityResponseCall = apiInterface.getCity();
-            cityResponseCall.enqueue(new Callback<CityResponse>() {
-                @Override
-                public void onResponse(Call<CityResponse> call, Response<CityResponse> response) {
-                    CityResponse cityResponse = response.body();
-                    onCityCallBack.onCityReceived(cityResponse.getCities());
-                    Log.d("Retrofit", cityResponse.toString());
-                }
+        cityResponseCall.enqueue(new Callback<CityResponse>() {
+            @Override
+            public void onResponse(Call<CityResponse> call, Response<CityResponse> response) {
+                CityResponse cityResponse = response.body();
+                onCityCallBack.onCityReceived(cityResponse.getCities());
+                Log.d("Retrofit", cityResponse.toString());
+            }
 
-                @Override
-                public void onFailure(Call<CityResponse> call, Throwable t) {
-                    Log.d("Retrofit", t.getMessage());
+            @Override
+            public void onFailure(Call<CityResponse> call, Throwable t) {
+                Log.d("Retrofit", t.getMessage());
 
 
-                }
-            });
+            }
+        });
     }
 
     public void getCoupons(final CouponsCallback couponsCallback) {
@@ -249,11 +248,8 @@ public class Repository implements DataStructure {
 
 
     }
+
     public void reserve(String busid, List<Integer> selectedSeat, OnReserveCallBack onReserveCallBack) {
-
-
-
-
 
 
         int n = selectedSeat.size();
@@ -263,7 +259,6 @@ public class Repository implements DataStructure {
         data.put("busid", busid);
 
         for (int i = 0; i < n; i++) {
-
 
 
             int adjPostion = hash.get(selectedSeat.get(i));
@@ -286,6 +281,7 @@ public class Repository implements DataStructure {
                 Log.d("reserved", t.getMessage());
             }
         });
+
     }
 
 
@@ -297,4 +293,18 @@ public class Repository implements DataStructure {
 
 
 
+
+
+
+
+
+
+
 }
+
+
+
+
+
+
+
