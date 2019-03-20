@@ -21,9 +21,7 @@ public class LoginPresenter implements LoginContract.Presenter, DataStructure.Lo
 
     @Override
     public void sendRequest(String mobile, String password) {
-        Log.e("Login Presenter", mobile);
         repository.login(mobile, password, this);
-
     }
 
     @Override
