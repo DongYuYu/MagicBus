@@ -39,11 +39,11 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripViewHolder
         if (mTrips != null) {
             Trip current = mTrips.get(position);
             tripViewHolder.tvToken_id.setText("Token Id: "+ current.getToken_id());
-            tripViewHolder.tvPasName.setText(current.getPassengername());
-            tripViewHolder.tv_journydate.setText("Journey Date: " + current.getJournydate());
-            tripViewHolder.tv_fare.setText("Amount Paid: " + current.getFare());
-            tripViewHolder.tv_boardTime.setText("Boarding Time: " + current.getBoardingtime());
-            tripViewHolder.tvSeat.setText("SEAT No: " + current.getSelectedseat());
+            tripViewHolder.tvPasName.setText("Passenger Name: " + current.getPassengername());
+            tripViewHolder.tv_fare.setText("Trip Cost: " + current.getFare());
+            tripViewHolder.tv_boardTime.setText("Boarding Time: " + current.getBoardingtime() + "," + current.getJournydate());
+            tripViewHolder.tvSeat.setText(" " + "Seat No: " + current.getSelectedseat());
+
 
         } else {
             // Covers the case of data not being ready yet.
@@ -65,11 +65,11 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripViewHolder
         public TripViewHolder(@NonNull View itemView) {
             super(itemView);
             tvToken_id = itemView.findViewById(R.id.tvToken_id);
-            tv_journydate =  itemView.findViewById(R.id.tv_journydate);
+        //    tv_journydate =  itemView.findViewById(R.id.tv_journydate);
             tvPasName = itemView.findViewById(R.id.tvPassengerName);
             tv_fare = itemView.findViewById(R.id.tvFare);
             tv_boardTime = itemView.findViewById(R.id.tvBoardingTime);
-            tvSeat = itemView.findViewById(R.id.tv_seat);
+            tvSeat = itemView.findViewById(R.id.tvSeatNo);
         }
     }
 }

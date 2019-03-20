@@ -33,7 +33,7 @@ public class TripHistoryActivity extends AppCompatActivity {
 
 
         // just to test
-        Trip trip = new Trip("dong230","chicago","102","$300","1343232",
+        Trip trip = new Trip("dong451","chicago","102","$300","1343232",
                 "7%","11/11/2019","11:00am","4:00pm","5","232",
                  "sm@we.com","+16775645343","43","chan","36","male");
              // insert Trip into database
