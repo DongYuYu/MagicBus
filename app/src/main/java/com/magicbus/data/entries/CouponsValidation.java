@@ -4,33 +4,22 @@ import com.google.gson.annotations.SerializedName;
 
 public class CouponsValidation {
 
-    @SerializedName("id")
-    private String id;
-    @SerializedName("couponno")
-    private String couponno;
+    @SerializedName("msg")
+    private String msg;
     @SerializedName("discount")
     private String discount;
 
-    public CouponsValidation(String id, String couponno, String discount) {
-        this.id = id;
-        this.couponno = couponno;
+    public CouponsValidation(String msg, String couponno, String discount) {
+        this.msg = msg;
         this.discount = discount;
     }
 
-    public String getId() {
-        return id;
+    public String getMsg() {
+        return msg;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getCouponno() {
-        return couponno;
-    }
-
-    public void setCouponno(String couponno) {
-        this.couponno = couponno;
+    public void setMsg(String id) {
+        this.msg = msg;
     }
 
     public String getDiscount() {

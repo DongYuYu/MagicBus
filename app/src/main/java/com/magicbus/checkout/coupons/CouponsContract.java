@@ -7,10 +7,10 @@ import java.util.List;
 public interface CouponsContract {
 
     interface View {
-        void getResponse(List<Coupons> response);
+        void getCouponsResponse(List<Coupons> response);
     }
 
     interface Presenter{
-        void sendRequest();
+        void sendCouponsRequest();
     }
 }

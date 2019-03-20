@@ -17,12 +17,12 @@ public class CouponsPresenter implements CouponsContract.Presenter, DataStructur
     }
 
     @Override
-    public void sendRequest() {
+    public void sendCouponsRequest() {
         repository.getCoupons(this);
     }
 
     @Override
     public void couponsCallback(List<Coupons> response) {
-        view.getResponse(response);
+        view.getCouponsResponse(response);
     }
 }
