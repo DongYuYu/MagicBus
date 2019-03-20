@@ -42,7 +42,7 @@ public class ServiceListFragment extends Fragment implements ServiceListContract
 
 
         Bundle args = getArguments();
-        //presenter.sendRequest("41.914196", "-88.308685", "40.73061", "-73.935242");
+        //presenter.sendCouponsRequest("41.914196", "-88.308685", "40.73061", "-73.935242");
         presenter.sendRequest(args.getString("start_lat"), args.getString("start_long"), args.getString("end_lat"), args.getString("end_long"));
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());

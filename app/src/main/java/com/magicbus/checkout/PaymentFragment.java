@@ -272,6 +272,13 @@ public class PaymentFragment extends Fragment implements CouponsContract.View, C
                          * For sample mobile backend interactions, see
                          * https://github.com/paypal/rest-api-sdk-python/tree/master/samples/mobile_backend
                          */
+//                        Intent email = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto",EMAIL ADDRESS HERE, null));
+//                        email.putExtra(Intent.EXTRA_SUBJECT, "ORDER CONFIRMATION");
+//                        email.putExtra(Intent.EXTRA_TEXT,"Thanks for using our Services. Below are your bus details /n" +
+//                                        "Token number is " + token_id + "/n" + "route name is: " + route_name + "/n" +
+//                                        "Journey Day is" + journydate + "/n" + "Boarding time is at " + boardingtime + "/n" +
+//                                "Your passenger id is " + passengerid + "/n" + "your seat number is " + selectedSeat);
+//                        startActivity(Intent.createChooser(email, "Send email..."));
                         displayResultText("PaymentConfirmation info received from PayPal");
 
 
