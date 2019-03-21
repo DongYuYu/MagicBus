@@ -28,8 +28,9 @@ import com.magicbus.adapter.PassengerAdapter;
 import com.magicbus.data.Repository;
 import com.magicbus.data.entries.Passenger;
 import com.magicbus.roomdb.TripHistoryActivity;
+import com.magicbus.search.city.CityFragment;
 
-public class CheckoutActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
+public class CheckoutActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener, CityFragment.OnCityFragmentInteractionListener {
 
 
 
@@ -163,6 +164,10 @@ public class CheckoutActivity extends AppCompatActivity implements View.OnClickL
     }
 
 
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
+    }
 }
 
 

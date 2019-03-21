@@ -30,7 +30,7 @@ public class ConfirmationFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.frag_confirmation, container, false);
 
-        button = view.findViewById(R.id.button);
+        button = view.findViewById(R.id.buttonHomeScreen);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
