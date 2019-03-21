@@ -15,7 +15,7 @@
         android:layout_marginTop="8dp"
         android:elevation="20dp"
         android:fadingEdge="horizontal"
-        app:cardCornerRadius="20dp"
+        app:cardCornerRadius="5dp"
         app:layout_constraintTop_toTopOf="parent">
 
         <RelativeLayout
@@ -28,7 +28,7 @@
             <TextView
                 android:id="@+id/tvToken_id"
                 android:layout_width="wrap_content"
-                android:layout_height="25dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="130dp"
                 android:layout_marginTop="44dp"
                 android:layout_marginBottom="24dp"
@@ -43,7 +43,7 @@
             <TextView
                 android:id="@+id/tvPassengerName"
                 android:layout_width="wrap_content"
-                android:layout_height="25dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="130dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="22dp"
@@ -58,7 +58,7 @@
             <TextView
                 android:id="@+id/tvFare"
                 android:layout_width="wrap_content"
-                android:layout_height="25dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="130dp"
                 android:layout_marginTop="111dp"
                 android:layout_marginBottom="16dp"

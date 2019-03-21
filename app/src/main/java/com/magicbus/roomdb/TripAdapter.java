@@ -39,9 +39,9 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripViewHolder
         if (mTrips != null) {
             Trip current = mTrips.get(position);
             tripViewHolder.tvToken_id.setText("Token Id: "+ current.getToken_id());
-            tripViewHolder.tvPasName.setText("Passenger Name: " + current.getPassengername());
-            tripViewHolder.tv_fare.setText("Trip Cost: " + current.getFare());
-            tripViewHolder.tv_boardTime.setText("Boarding Time: " + current.getBoardingtime() + "," + current.getJournydate());
+            tripViewHolder.tvPasName.setText("Name: " + current.getPassengername());
+            tripViewHolder.tv_fare.setText("Cost: " + current.getFare());
+            tripViewHolder.tv_boardTime.setText("Board time: " + current.getBoardingtime() + "," + current.getJournydate());
             tripViewHolder.tvSeat.setText(" " + "Seat No: " + current.getSelectedseat());
 
 
