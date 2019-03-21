@@ -134,7 +134,7 @@ public class CityFragment extends Fragment implements CityInterface.View, Adapte
         String year_string = Integer.toString(year);
         String dateMessage = (month_string +
                 "/" + day_string + "/" + year_string);
-        Toast.makeText(getActivity(), dateMessage, Toast.LENGTH_LONG).show();
+       // Toast.makeText(getActivity(), dateMessage, Toast.LENGTH_LONG).show();
         SharedPreferences.Editor editor = getActivity().getSharedPreferences("default", Context.MODE_PRIVATE).edit();
 
 

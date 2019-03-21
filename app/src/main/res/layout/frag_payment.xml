@@ -124,15 +124,15 @@
 
         <EditText
             android:id="@+id/et_coupon"
-            android:layout_width="280dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginEnd="31dp"
             android:ems="10"
             android:hint="Please enter a coupon number"
             android:inputType="number"
             app:layout_constraintBottom_toBottomOf="@+id/button_coupon"
-            app:layout_constraintEnd_toStartOf="@+id/button_coupon"
+            app:layout_constraintEnd_toStartOf="@+id/floatingActionButton"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
@@ -153,13 +153,11 @@
             android:id="@+id/tv_coupon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="434dp"
+            android:layout_marginTop="44dp"
             android:paddingStart="5dp"
             android:text="Do you need a coupon number?"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/et_coupon"
-            app:layout_constraintTop_toBottomOf="@+id/textView11"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintTop_toTopOf="@+id/et_coupon" />
 
         <ImageButton
             android:id="@+id/button_paypal"
@@ -178,6 +176,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView4"
             app:layout_constraintVertical_bias="1.0" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/floatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="29dp"
+            android:clickable="true"
+            android:src="@drawable/ic_menu_share"
+            app:layout_constraintBottom_toTopOf="@+id/button_paypal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/et_coupon" />
 
     </android.support.constraint.ConstraintLayout>
 </FrameLayout>

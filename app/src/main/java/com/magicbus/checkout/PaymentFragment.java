@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -53,6 +54,7 @@ import java.util.List;
 
 public class PaymentFragment extends Fragment implements CouponsContract.View, CouponsValidationContract.View {
 
+    private static final int REQUEST_CODE_SHARING = 23;
     TripRoomDatabase db;
     private TripDao mTripDao;
     private static final String TAG = "paymentExample";
@@ -67,7 +69,7 @@ public class PaymentFragment extends Fragment implements CouponsContract.View, C
     private CouponsContract.Presenter couponsPresenter;
     private CouponsValidationContract.Presenter couponsValidationPresenter;
 
-
+    private FloatingActionButton floatingActionButton;
     private TextView tv_baseFare, tv_tax, tv_total, tv_coupon;
     private EditText et_coupon;
     private Button button_coupon;
@@ -102,6 +104,11 @@ public class PaymentFragment extends Fragment implements CouponsContract.View, C
         this.et_coupon = view.findViewById(R.id.et_coupon);
         this.button_coupon = view.findViewById(R.id.button_coupon);
         this.button_paypal = view.findViewById(R.id.button_paypal);
+
+
+
+
+        this.floatingActionButton = view.findViewById(R.id.floatingActionButton);
         String bus = getActivity().getSharedPreferences("default", Context.MODE_PRIVATE).getString("busInfo", "");
         Gson gson = new Gson();
         BusInformation busInformation = gson.fromJson(bus, BusInformation.class);
@@ -112,13 +119,18 @@ public class PaymentFragment extends Fragment implements CouponsContract.View, C
         tv_tax.setText(calculateTax(tv_baseFare.getText().toString()));
         tv_total.setText(calculateTotal(tv_baseFare.getText().toString(), tv_tax.getText().toString()));
 
-        tv_coupon.setOnClickListener(new View.OnClickListener() {
+
+
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+
+
+                share();
+
             }
         });
-
         button_coupon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -341,6 +353,15 @@ public class PaymentFragment extends Fragment implements CouponsContract.View, C
                         "Probably the attempt to previously start the PayPalService had an invalid PayPalConfiguration. Please see the docs.");
             }
 
+
+        } else if (requestCode == REQUEST_CODE_SHARING) {
+            Log.d("PayPal", "---------Share preference");
+            if (resultCode == Activity.RESULT_OK) {
+                Log.d("PayPal", "--------Get reponse from share preference");
+
+
+                et_coupon.setText("12316544");
+            }
         }
     }
 
@@ -383,5 +404,22 @@ public class PaymentFragment extends Fragment implements CouponsContract.View, C
          * https://github.com/paypal/rest-api-sdk-python/tree/master/samples/mobile_backend
          */
 
+    }
+    void share() {
+        Intent share = new Intent(android.content.Intent.ACTION_SEND);
+        share.setType("text/plain");
+        share.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
+
+        // Add data to the intent, the receiving app will decide
+        // what to do with it.
+
+
+        String uri = "http://rjtmobile.com/aamir/otr/android-app/";
+        share.putExtra(Intent.EXTRA_SUBJECT, "Title Of The Post");
+        share.putExtra(Intent.EXTRA_TEXT, "Install this awesome MagicBus to have discount on bus reservation" + uri +"\n");
+
+
+
+        getActivity().startActivityForResult(Intent.createChooser(share, "Share link!"), REQUEST_CODE_SHARING);
     }
 }
