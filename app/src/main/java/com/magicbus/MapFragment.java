@@ -11,6 +11,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -32,18 +33,28 @@ import com.magicbus.R;
 
 import java.util.Locale;
 
+import static com.facebook.share.internal.DeviceShareDialogFragment.TAG;
+
 
 public class MapFragment extends Fragment  implements OnMapReadyCallback{
 
    /* public MapFragment() {
         // Required empty public constructor
     }*/
+   private static final String TAG = MapFragment.class.getSimpleName();
+
       private GoogleMap mMap;
       private  SupportMapFragment mapFragment;
+      //private  LatLng latitude;
+      private  String latitude;
+      private  String longitude;
+      private  LatLng home;
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -59,6 +70,11 @@ public class MapFragment extends Fragment  implements OnMapReadyCallback{
             ft.add(R.id.frg,mapFragment).commit();
         }
 
+        Bundle args = getArguments();
+        latitude = args.getString("lat");
+        longitude = args.getString("long");
+        home = new LatLng(Double.parseDouble(latitude),Double.parseDouble(longitude));
+        Log.d(TAG, "onCreateView: " + latitude + " " + longitude);
         mapFragment.getMapAsync(this);
 
         return rootView;
@@ -130,7 +146,6 @@ public class MapFragment extends Fragment  implements OnMapReadyCallback{
         mMap = googleMap;
       //  mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         // pass the lat and log values here to view the destination location
-        LatLng home = new LatLng(41.877793, -87.630019);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(home, 20));
         mMap.addMarker(new MarkerOptions().position(home));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(home));

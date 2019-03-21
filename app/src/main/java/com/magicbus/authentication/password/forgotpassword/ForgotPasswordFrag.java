@@ -25,7 +25,7 @@ public class ForgotPasswordFrag extends Fragment implements PasswordContract.For
     private Button submitPassword;
     private PasswordPresenter passwordPresenter  = new PasswordPresenter(this);
     private List<PasswordDetail> passwordDetailList;
-    AlertDialog.Builder builder;
+    private AlertDialog.Builder builder;
 
     public ForgotPasswordFrag() {
         // Required empty public constructor
@@ -51,13 +51,7 @@ public class ForgotPasswordFrag extends Fragment implements PasswordContract.For
         /**
          * the user password is displayed in a dialog box after the user submits his/her mobile number
          */
-        builder = new AlertDialog.Builder(getActivity());
-        builder.setMessage(getString(R.string.dialog_message,passwordDetailList.get(0).getMobile(),
-                           passwordDetailList.get(0).getPassword()))
-                .setTitle(getString(R.string.dialog_title, passwordDetailList.get(0).getMsg()))
-                .setCancelable(true);
-                 AlertDialog alert = builder.create();
-                 alert.show();
+
 
         return view;
     }
@@ -65,6 +59,14 @@ public class ForgotPasswordFrag extends Fragment implements PasswordContract.For
     @Override
     public void showPassword(List<PasswordDetail> passwordDetailList) {
         this.passwordDetailList = passwordDetailList;
+
+        builder = new AlertDialog.Builder(getActivity());
+        builder.setMessage(getString(R.string.dialog_message,passwordDetailList.get(0).getMobile(),
+                passwordDetailList.get(0).getPassword()))
+                .setTitle(getString(R.string.dialog_title, passwordDetailList.get(0).getMsg()))
+                .setCancelable(true);
+        AlertDialog alert = builder.create();
+        alert.show();
         /**
          *  The user password is displayed in a dialog box
          */

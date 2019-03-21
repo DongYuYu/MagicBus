@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.magicbus.MapFragment;
 import com.magicbus.R;
 import com.magicbus.data.entries.City;
 import com.magicbus.search.servicelist.ServiceListFragment;
@@ -49,6 +50,7 @@ public class CityFragment extends Fragment implements CityInterface.View, Adapte
 
     Button dateButton;
     private OnCityFragmentInteractionListener mListener;
+    Button sourceButton, destButton;
 
     public CityFragment() {
         // Required empty public constructor
@@ -115,6 +117,12 @@ public class CityFragment extends Fragment implements CityInterface.View, Adapte
 
         button = view.findViewById(R.id.btnSearch);
         button.setOnClickListener(this);
+
+        // buttons to navigate to map fragment are initialized here
+        sourceButton = view.findViewById(R.id.buttonSource);
+        destButton = view.findViewById(R.id.buttonDest);
+        sourceButton.setOnClickListener(this);
+        destButton.setOnClickListener(this);
 
 
 
@@ -274,7 +282,43 @@ public class CityFragment extends Fragment implements CityInterface.View, Adapte
                 break;
 
 
+            case R.id.buttonSource:
+                City source = (City) spinner.getSelectedItem();
 
+                String startlat, startLong;
+                startlat = source.getCitylatitude();
+                startLong = source.getCitylongtitude();
+                Bundle source_args = new Bundle();
+                source_args.putString("lat", startlat);
+                source_args.putString("long", startLong);
+
+                Fragment source_fg = new MapFragment();
+                source_fg.setArguments(source_args);
+
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, source_fg)
+                        .addToBackStack(null)
+                        .commit();
+                break;
+
+
+            case R.id.buttonDest:
+                   City dest = (City) spinner2.getSelectedItem();
+                   String  endLat, endlong;
+                   endLat = dest.getCitylatitude();
+                   endlong = dest.getCitylongtitude();
+
+                Bundle dest_args = new Bundle();
+                dest_args.putString("lat", endLat);
+                dest_args.putString("long", endlong);
+
+                Fragment dest_fg = new MapFragment();
+                dest_fg.setArguments(dest_args);
+
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, dest_fg)
+                        .addToBackStack(null)
+                        .commit();
+
+                break;
 
 
             case R.id.btnDate:
