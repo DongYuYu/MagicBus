@@ -186,6 +186,7 @@ public class PaymentFragment extends Fragment implements CouponsContract.View, C
             Log.d("Coupons Validation", response.get(0).toString());
             String discount = response.get(0).getDiscount();
             double totalPriceAfterDiscount = (1 - (Double.parseDouble(discount) / 100)) * totalPrice;
+            this.totalPrice = totalPriceAfterDiscount;
             String totalAfterDiscount = Double.toString(totalPriceAfterDiscount);
             tv_total.setText(totalAfterDiscount);
 
@@ -296,6 +297,12 @@ public class PaymentFragment extends Fragment implements CouponsContract.View, C
 
 
                         storeHistory();
+
+                        Fragment fg = new ConfirmationFragment();
+                        getActivity().getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.frag_container, fg)
+                                .addToBackStack(null)
+                                .commit();
 
 
 
