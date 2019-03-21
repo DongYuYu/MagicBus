@@ -173,23 +173,26 @@ public class CityFragment extends Fragment implements CityInterface.View, Adapte
     public void setCities(List<City> cities) {
         // Create an ArrayAdapter using the string array and a default spinner layout
         List<City> fromCity = new ArrayList<>();
-        City from = new City("select");
+        City from = new City("Select Orientation");
 
 
 
-
+        City to = new City("Select Destination");
         fromCity.add(from);
         fromCity.addAll(cities);
-
-
-
+        List<City> toCity = new ArrayList<>();
+        toCity.add(to);
+        toCity.addAll(cities);
         ArrayAdapter<City> adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, fromCity);
 // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
 
-        spinner2.setAdapter(adapter);
+
+        ArrayAdapter<City> adapter2 = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, toCity);
+
+        spinner2.setAdapter(adapter2);
     }
     @Override
     public void onResume() {
@@ -245,32 +248,30 @@ public class CityFragment extends Fragment implements CityInterface.View, Adapte
                 args.putString("start_long", start_long);
                 args.putString("end_lat", end_lat);
 
-
-
-
-
                 args.putString("end_long", end_long);
-                Fragment fg = new ServiceListFragment();
-                fg.setArguments(args);
+
+                if (start_lat.equals("")) {
+                    Toast.makeText(getActivity(), "Please Select Orientation.", Toast.LENGTH_LONG).show();
+                } else if (end_lat.equals("")) {
 
 
+                    Toast.makeText(getActivity(), "Please Select Destination.", Toast.LENGTH_LONG).show();
+
+                } else if (start_lat.equals(end_lat)) {
+                    Toast.makeText(getActivity(), "Orientation should not be the same as Destination.", Toast.LENGTH_LONG).show();
+                } else {
+                    Fragment fg = new ServiceListFragment();
+                    fg.setArguments(args);
 
 
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, fg)
 
 
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, fg)
+                            .addToBackStack(null)
 
 
-
-
-                        .addToBackStack(null)
-
-
-
-
-
-                        .commit();
-
+                            .commit();
+                }
                 break;
 
 

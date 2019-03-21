@@ -188,7 +188,7 @@ public class PaymentFragment extends Fragment implements CouponsContract.View, C
             double totalPriceAfterDiscount = (1 - (Double.parseDouble(discount) / 100)) * totalPrice;
             String totalAfterDiscount = Double.toString(totalPriceAfterDiscount);
             tv_total.setText(totalAfterDiscount);
-
+            totalPrice = totalPriceAfterDiscount;
             Toast.makeText(getContext(), discount + "% discount is applied", Toast.LENGTH_LONG).show();
         }
         else Toast.makeText(getContext(), "Invalid Coupon Number", Toast.LENGTH_SHORT).show();
