@@ -28,10 +28,9 @@ import com.magicbus.adapter.PassengerAdapter;
 import com.magicbus.data.Repository;
 import com.magicbus.data.entries.Passenger;
 import com.magicbus.roomdb.TripHistoryActivity;
+import com.magicbus.search.city.CityFragment;
 
-public class CheckoutActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
-
-
+public class CheckoutActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener, CityFragment.OnCityFragmentInteractionListener {
 
     private CheckoutFragment fg;
 
@@ -41,11 +40,8 @@ public class CheckoutActivity extends AppCompatActivity implements View.OnClickL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-
-
         setContentView(R.layout.activity_main);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -72,8 +68,8 @@ public class CheckoutActivity extends AppCompatActivity implements View.OnClickL
         navigationView.setNavigationItemSelectedListener(this);
 
 
-        //button = findViewById(R.id.button3);
-        //button.setOnClickListener(this);
+        //buttonHomeScreen = findViewById(R.id.button3);
+        //buttonHomeScreen.setOnClickListener(this);
 
 //        fg = (CheckoutFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentCheckout);
 //        fg.setAdapter(getIntent().getIntArrayExtra("adjustSeats"));
@@ -120,7 +116,7 @@ public class CheckoutActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
+        // automatically handle clicks on the Home/Up buttonHomeScreen, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
@@ -163,6 +159,10 @@ public class CheckoutActivity extends AppCompatActivity implements View.OnClickL
     }
 
 
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
+    }
 }
 
 

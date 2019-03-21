@@ -13,25 +13,28 @@
         android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/gender"
-            android:layout_width="62dp"
-            android:layout_height="36dp"
-            android:ems="10"
-            android:hint="gender"
-            android:inputType="textPersonName"
-            tools:layout_editor_absoluteX="270dp"
-            tools:layout_editor_absoluteY="190dp"
-            tools:text="gender" />
-
-        <TextView
-            android:id="@+id/seatNum"
+            android:id="@+id/pName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
-            android:text="TextView"
-            android:textSize="16sp"
-            tools:layout_editor_absoluteX="69dp"
-            tools:layout_editor_absoluteY="119dp" />
+            android:descendantFocusability="beforeDescendants"
+            android:ems="10"
+            android:focusableInTouchMode="true"
+            android:hint="Passenger Name:"
+            tools:layout_editor_absoluteX="27dp"
+            tools:layout_editor_absoluteY="166dp" />
+
+        <EditText
+            android:id="@+id/age"
+            android:layout_width="50dp"
+            android:layout_height="45dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:ems="10"
+            android:hint="Age"
+            android:inputType="textPersonName"
+            tools:layout_editor_absoluteX="286dp"
+            tools:layout_editor_absoluteY="127dp" />
 
     </LinearLayout>
 
@@ -41,26 +44,26 @@
         android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/pName"
+            android:id="@+id/gender"
+            android:layout_width="62dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="50dp"
+            android:ems="10"
+            android:hint="Gender:"
+            android:inputType="textPersonName"
+            tools:layout_editor_absoluteX="270dp"
+            tools:layout_editor_absoluteY="190dp" />
+
+        <TextView
+            android:id="@+id/seatNum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:descendantFocusability="beforeDescendants"
-            android:ems="10"
-            android:focusableInTouchMode="true"
-            android:hint="PassengerName"
-            tools:layout_editor_absoluteX="27dp"
-            tools:layout_editor_absoluteY="166dp" />
-
-        <EditText
-            android:id="@+id/age"
-            android:layout_width="50dp"
-            android:layout_height="45dp"
-            android:layout_marginLeft="100dp"
-            android:ems="10"
-            android:hint="age"
-            android:inputType="textPersonName"
-            tools:layout_editor_absoluteX="286dp"
-            tools:layout_editor_absoluteY="127dp" />
+            android:layout_marginLeft="180dp"
+            android:gravity="right"
+            android:text="TextView"
+            android:textSize="16sp"
+            tools:layout_editor_absoluteX="69dp"
+            tools:layout_editor_absoluteY="119dp" />
 
     </LinearLayout>
 

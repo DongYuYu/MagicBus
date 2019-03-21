@@ -54,7 +54,7 @@
         android:layout_marginStart="54dp"
         android:layout_marginTop="324dp"
         android:layout_marginEnd="54dp"
-        android:background="@color/accent"
+        android:background="#FFFFDC73"
         android:text="Login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.333"
@@ -68,9 +68,10 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginStart="55dp"
         android:layout_marginEnd="55dp"
-        android:layout_marginBottom="7dp"
+        android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toTopOf="@+id/createAccountButton"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button

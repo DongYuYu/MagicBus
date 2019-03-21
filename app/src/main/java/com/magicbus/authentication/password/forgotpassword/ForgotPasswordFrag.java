@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.magicbus.R;
 import com.magicbus.data.entries.PasswordDetail;
@@ -46,29 +47,30 @@ public class ForgotPasswordFrag extends Fragment implements PasswordContract.For
             @Override
             public void onClick(View v) {
                 passwordPresenter.getPassword(mobileNumET.getText().toString());
+//                Toast.makeText(getContext(), "Login Details have been sent to your email", Toast.LENGTH_LONG).show();
             }
         });
         /**
          * the user password is displayed in a dialog box after the user submits his/her mobile number
          */
-        builder = new AlertDialog.Builder(getActivity());
-        builder.setMessage(getString(R.string.dialog_message,passwordDetailList.get(0).getMobile(),
-                           passwordDetailList.get(0).getPassword()))
-                .setTitle(getString(R.string.dialog_title, passwordDetailList.get(0).getMsg()))
-                .setCancelable(true);
-                 AlertDialog alert = builder.create();
-                 alert.show();
+//        builder = new AlertDialog.Builder(getActivity());
+//        builder.setMessage(getString(R.string.dialog_message,passwordDetailList.get(0).getMobile(),
+//                           passwordDetailList.get(0).getPassword()))
+//                .setTitle(getString(R.string.dialog_title, passwordDetailList.get(0).getMsg()))
+//                .setCancelable(true);
+//                 AlertDialog alert = builder.create();
+//                 alert.show();
 
         return view;
     }
-
     @Override
     public void showPassword(List<PasswordDetail> passwordDetailList) {
         this.passwordDetailList = passwordDetailList;
         /**
          *  The user password is displayed in a dialog box
          */
-       // AlertDialog alertDialog = new AlertDialog(getActivity());
-
+//         AlertDialog alertDialog = new AlertDialog(getActivity());
+        Toast.makeText(getContext(), "Your password is : " + passwordDetailList.get(0).getPassword(), Toast.LENGTH_SHORT).show();
     }
+
 }

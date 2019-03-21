@@ -98,7 +98,7 @@ public class PaymentFragment extends Fragment implements CouponsContract.View, C
         this.tv_baseFare = view.findViewById(R.id.tv_baseFare);
         this.tv_tax = view.findViewById(R.id.tv_tax);
         this.tv_total = view.findViewById(R.id.tv_total);
-        this.tv_coupon = view.findViewById(R.id.tv_coupon);
+//        this.tv_coupon = view.findViewById(R.id.tv_coupon);
         this.et_coupon = view.findViewById(R.id.et_coupon);
         this.button_coupon = view.findViewById(R.id.button_coupon);
         this.button_paypal = view.findViewById(R.id.button_paypal);
@@ -112,12 +112,12 @@ public class PaymentFragment extends Fragment implements CouponsContract.View, C
         tv_tax.setText(calculateTax(tv_baseFare.getText().toString()));
         tv_total.setText(calculateTotal(tv_baseFare.getText().toString(), tv_tax.getText().toString()));
 
-        tv_coupon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
+//        tv_coupon.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
 
         button_coupon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -189,7 +189,7 @@ public class PaymentFragment extends Fragment implements CouponsContract.View, C
             this.totalPrice = totalPriceAfterDiscount;
             String totalAfterDiscount = Double.toString(totalPriceAfterDiscount);
             tv_total.setText(totalAfterDiscount);
-
+            totalPrice = totalPriceAfterDiscount;
             Toast.makeText(getContext(), discount + "% discount is applied", Toast.LENGTH_LONG).show();
         }
         else Toast.makeText(getContext(), "Invalid Coupon Number", Toast.LENGTH_SHORT).show();
