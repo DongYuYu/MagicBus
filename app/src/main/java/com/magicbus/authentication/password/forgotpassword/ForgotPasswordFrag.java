@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.magicbus.R;
 import com.magicbus.data.entries.PasswordDetail;
@@ -46,6 +47,7 @@ public class ForgotPasswordFrag extends Fragment implements PasswordContract.For
             @Override
             public void onClick(View v) {
                 passwordPresenter.getPassword(mobileNumET.getText().toString());
+//                Toast.makeText(getContext(), "Login Details have been sent to your email", Toast.LENGTH_LONG).show();
             }
         });
         /**
@@ -70,7 +72,8 @@ public class ForgotPasswordFrag extends Fragment implements PasswordContract.For
         /**
          *  The user password is displayed in a dialog box
          */
-       // AlertDialog alertDialog = new AlertDialog(getActivity());
-
+//         AlertDialog alertDialog = new AlertDialog(getActivity());
+        Toast.makeText(getContext(), "Your password is : " + passwordDetailList.get(0).getPassword(), Toast.LENGTH_SHORT).show();
     }
+
 }

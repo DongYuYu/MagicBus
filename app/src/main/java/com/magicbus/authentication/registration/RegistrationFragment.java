@@ -3,6 +3,7 @@ package com.magicbus.authentication.registration;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.util.Patterns;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
@@ -18,7 +20,7 @@ import com.magicbus.authentication.login.LoginFragment;
 
 public class RegistrationFragment extends Fragment implements RegistrationContract.View, View.OnClickListener {
 
-    private EditText firstname, lastname, address, email, mobile, password;
+    private TextInputLayout firstname, lastname, address, email, mobile, password;
     private AwesomeValidation awesomeValidation;
 
     private Button button;
@@ -30,12 +32,12 @@ public class RegistrationFragment extends Fragment implements RegistrationContra
 
         View view = inflater.inflate(R.layout.frag_registration, container, false);
 
-        firstname = view.findViewById(R.id.firstName);
-        lastname = view.findViewById(R.id.lastName);
-        address = view.findViewById(R.id.address);
-        email = view.findViewById(R.id.email);
-        mobile = view.findViewById(R.id.mobile);
-        password = view.findViewById(R.id.password);
+        firstname = view.findViewById(R.id.til_fName);
+        lastname = view.findViewById(R.id.til_lName);
+        address = view.findViewById(R.id.til_address);
+        email = view.findViewById(R.id.til_email);
+        mobile = view.findViewById(R.id.til_mobile);
+        password = view.findViewById(R.id.til_password);
         button = view.findViewById(R.id.register);
 
         awesomeValidation = new AwesomeValidation(ValidationStyle.TEXT_INPUT_LAYOUT);
@@ -54,12 +56,12 @@ public class RegistrationFragment extends Fragment implements RegistrationContra
     @Override
     public void onClick(View v) {
         if (awesomeValidation.validate()) {
-            presenter.register(firstname.getText().toString(),
-                    lastname.getText().toString(),
-                    address.getText().toString(),
-                    email.getText().toString(),
-                    mobile.getText().toString(),
-                    password.getText().toString());
+            presenter.register(firstname.getEditText().getText().toString(),
+                    lastname.getEditText().getText().toString(),
+                    address.getEditText().getText().toString(),
+                    email.getEditText().getText().toString(),
+                    mobile.getEditText().getText().toString(),
+                    password.getEditText().getText().toString());
         }
    }
 
@@ -67,6 +69,7 @@ public class RegistrationFragment extends Fragment implements RegistrationContra
     public void login(String response) {
         if (response.equals("\nsuccessfully registered")) {
 
+            Toast.makeText(getContext(), "Successful Registration", Toast.LENGTH_LONG).show();
 
             LoginFragment fg = new LoginFragment();
 

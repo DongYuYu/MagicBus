@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
@@ -25,6 +26,7 @@ import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.magicbus.R;
+import com.magicbus.authentication.password.forgotpassword.ForgotPasswordFrag;
 import com.magicbus.authentication.registration.RegistrationFragment;
 import com.magicbus.data.entries.Login;
 import com.magicbus.data.network.ApiInterface;
@@ -40,6 +42,7 @@ import java.util.List;
 public class LoginFragment extends Fragment implements LoginContract.View {
 
     private Button loginButton, createAccountButton;
+    private TextView forgotPasswordTextView;
 //    private String mobile, password;
     private TextInputLayout mobileTextInputLayout, passwordTextInputLayout;
     private LoginButton facebookLoginButton;
@@ -66,6 +69,7 @@ public class LoginFragment extends Fragment implements LoginContract.View {
         this.passwordTextInputLayout = view.findViewById(R.id.til_password);
         this.loginButton = view.findViewById(R.id.loginButton);
         this.createAccountButton = view.findViewById(R.id.createAccountButton);
+        this.forgotPasswordTextView = view.findViewById(R.id.forgotPasswordTextView);
         this.presenter = new LoginPresenter(this);
         facebookLoginButton = view.findViewById(R.id.login_button);
         facebookLoginButton.setReadPermissions(Arrays.asList(EMAIL));
@@ -118,6 +122,17 @@ public class LoginFragment extends Fragment implements LoginContract.View {
             @Override
             public void onClick(View v) {
                 Fragment fg = new RegistrationFragment();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frag_container, fg)
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
+
+        forgotPasswordTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fg = new ForgotPasswordFrag();
                 getActivity().getSupportFragmentManager().beginTransaction()
                         .replace(R.id.frag_container, fg)
                         .addToBackStack(null)

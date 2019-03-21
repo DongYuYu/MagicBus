@@ -5,78 +5,127 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/lastName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="LastName"
-        android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="98dp"
-        tools:layout_editor_absoluteY="217dp" />
+    <!--<android.support.design.widget.TextInputLayout-->
+    <!--android:id="@+id/til_email"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginTop="40dp"-->
+    <!--app:layout_constraintEnd_toEndOf="parent"-->
+    <!--app:layout_constraintHorizontal_bias="0.0"-->
+    <!--app:layout_constraintStart_toStartOf="parent"-->
+    <!--app:layout_constraintTop_toTopOf="parent">-->
 
-    <EditText
-        android:id="@+id/address"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Address"
-        android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="98dp"
-        tools:layout_editor_absoluteY="285dp" />
+    <!--<android.support.design.widget.TextInputEditText-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:hint="Email address:"-->
+    <!--android:inputType="textEmailAddress" />-->
 
-    <EditText
-        android:id="@+id/email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Email"
-        android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="98dp"
-        tools:layout_editor_absoluteY="361dp" />
+    <!--</android.support.design.widget.TextInputLayout>-->
 
-    <EditText
-        android:id="@+id/mobile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Mobile"
-        android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="99dp"
-        tools:layout_editor_absoluteY="432dp" />
 
-    <EditText
-        android:id="@+id/password"
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/til_fName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Password"
-        android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="98dp"
-        tools:layout_editor_absoluteY="503dp" />
+        android:layout_marginTop="66dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <EditText
-        android:id="@+id/firstName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="FirstName"
-        android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="98dp"
-        tools:layout_editor_absoluteY="139dp" />
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:hint="First name:"
+            android:inputType="text" />
+    </android.support.design.widget.TextInputLayout>
 
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline"
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/til_lName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="98dp" />
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="@+id/til_fName"
+        app:layout_constraintTop_toBottomOf="@+id/til_fName">
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:hint="Last name:"
+            android:inputType="text" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/til_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="11dp"
+        app:layout_constraintStart_toStartOf="@+id/til_address"
+        app:layout_constraintTop_toBottomOf="@+id/til_address">
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:hint="Password:"
+            android:inputType="textPassword" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/til_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        app:layout_constraintStart_toStartOf="@+id/til_email"
+        app:layout_constraintTop_toBottomOf="@+id/til_email">
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:hint="Address:"
+            android:inputType="text" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/til_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="@+id/til_mobile"
+        app:layout_constraintTop_toBottomOf="@+id/til_mobile">
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:hint="Email:"
+            android:inputType="textEmailAddress"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/til_mobile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9dp"
+        app:layout_constraintStart_toStartOf="@+id/til_lName"
+        app:layout_constraintTop_toBottomOf="@+id/til_lName">
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:hint="Mobile:"
+            android:inputType="phone"/>
+    </android.support.design.widget.TextInputLayout>
 
     <Button
         android:id="@+id/register"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="41dp"
+        android:layout_marginEnd="55dp"
+        android:background="@color/primary"
         android:text="register"
-        tools:layout_editor_absoluteX="161dp"
-        tools:layout_editor_absoluteY="581dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/til_password" />
 </android.support.constraint.ConstraintLayout>

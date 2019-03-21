@@ -100,15 +100,10 @@ public class PaymentFragment extends Fragment implements CouponsContract.View, C
         this.tv_baseFare = view.findViewById(R.id.tv_baseFare);
         this.tv_tax = view.findViewById(R.id.tv_tax);
         this.tv_total = view.findViewById(R.id.tv_total);
-        this.tv_coupon = view.findViewById(R.id.tv_coupon);
+
         this.et_coupon = view.findViewById(R.id.et_coupon);
         this.button_coupon = view.findViewById(R.id.button_coupon);
         this.button_paypal = view.findViewById(R.id.button_paypal);
-
-
-
-
-        this.floatingActionButton = view.findViewById(R.id.floatingActionButton);
         String bus = getActivity().getSharedPreferences("default", Context.MODE_PRIVATE).getString("busInfo", "");
         Gson gson = new Gson();
         BusInformation busInformation = gson.fromJson(bus, BusInformation.class);
@@ -121,16 +116,6 @@ public class PaymentFragment extends Fragment implements CouponsContract.View, C
 
 
 
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-
-                share();
-
-            }
-        });
         button_coupon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
