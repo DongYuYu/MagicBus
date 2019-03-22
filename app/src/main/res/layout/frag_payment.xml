@@ -8,24 +8,48 @@
 
     <View
         android:id="@+id/view2"
-        android:layout_width="380dp"
+        android:layout_width="0dp"
         android:layout_height="150dp"
-        android:layout_marginTop="147dp"
-        android:layout_marginBottom="3dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginEnd="15dp"
         android:background="@color/primary_light"
-        app:layout_constraintBottom_toTopOf="@+id/et_coupon"
-        app:layout_constraintEnd_toStartOf="@+id/tv_baseFare"
-        app:layout_constraintHorizontal_bias="0.505"
-        app:layout_constraintStart_toStartOf="@+id/tv_baseFare"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="spread_inside" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_coupon"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="102dp"
+        android:gravity="right"
+        android:text="10000"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView15"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView15" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="0dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="105dp"
+        android:layout_marginTop="42dp"
+        android:layout_marginBottom="49dp"
+        android:text="Discount:"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_total"
+        app:layout_constraintEnd_toStartOf="@+id/tv_coupon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_baseFare" />
 
     <TextView
         android:id="@+id/textView8"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="105dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="19dp"
         android:text="Base Fare:"
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/tv_baseFare"
@@ -49,11 +73,11 @@
         android:layout_width="0dp"
         android:layout_height="21dp"
         android:layout_marginStart="105dp"
-        android:layout_marginTop="22dp"
-        android:layout_marginBottom="27dp"
-        android:text="Tax:"
+        android:layout_marginTop="21dp"
+        android:layout_marginBottom="21dp"
+        android:text="Tax (10%):"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/tv_total"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_coupon"
         app:layout_constraintEnd_toStartOf="@+id/tv_tax"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_baseFare" />
@@ -100,41 +124,42 @@
         android:id="@+id/et_coupon"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginBottom="386dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="320dp"
         android:ems="10"
         android:hint="Please enter a coupon number"
         android:inputType="number"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button_coupon"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view2" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button_coupon"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="14dp"
+        android:layout_marginTop="320dp"
+        android:layout_marginEnd="13dp"
         android:text="apply"
         android:textSize="10sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/et_coupon"
-        app:layout_constraintTop_toBottomOf="@+id/view2" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/button_paypal"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="54dp"
+        android:layout_marginTop="400dp"
         android:layout_marginEnd="54dp"
-        android:layout_marginBottom="277dp"
         android:adjustViewBounds="true"
         android:background="@android:color/white"
         android:scaleType="fitCenter"
         android:src="@drawable/paypal_button"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

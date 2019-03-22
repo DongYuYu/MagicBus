@@ -54,12 +54,7 @@ public class SeatPresenter implements SeatSelectionContract.SeatSelectionPresent
 
    @Override
     public void reserve(String busid, List<Integer> selectedSeat) {
-
-
-
-
         repository.reserve(busid, selectedSeat, this);
-
     }
 
     private void handleError(Throwable throwable) {
@@ -74,10 +69,7 @@ public class SeatPresenter implements SeatSelectionContract.SeatSelectionPresent
     public void reserveRecieved(String string, int[] adjustSeats) {
         if (string.equals("reserved")) {
             Log.d("reserve", "reserved");
-
-
             seatSelectionView.passengerDetails(adjustSeats);
-
         }
     }
 }

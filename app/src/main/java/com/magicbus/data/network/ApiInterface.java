@@ -71,12 +71,10 @@ public interface ApiInterface {
     //@POST("seatinfo.php")
     //Call<ResponseSeatInfo>  getSeatInfoResponse(@Field("busid") String bus_id);
 
-
-
-
     @FormUrlEncoded
     @POST("seatinfo.php")
     Observable<ResponseSeatInfo> getSeatInfoResponse(@Field("busid") String bus_id);
+
     @GET("city.php")
     Call<CityResponse> getCity();
 

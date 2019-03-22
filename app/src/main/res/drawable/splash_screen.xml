@@ -2,12 +2,12 @@
 
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:drawable="@color/primary_dark" />
+    <item android:drawable="@android:color/white" />
 
-    <item>
-        <bitmap android:src="@drawable/ic_launcher"
-            android:gravity="center" />
-
+    <item android:gravity="center" android:width="200dp" android:height="200dp">
+        <bitmap
+            android:gravity="fill_horizontal|fill_vertical"
+            android:src="@drawable/magicbus_logo" />
     </item>
 
 </layer-list>
