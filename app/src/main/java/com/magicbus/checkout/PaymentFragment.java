@@ -197,6 +197,9 @@ public class PaymentFragment extends Fragment implements CouponsContract.View, C
     }
 
 
+
+
+
     private PayPalPayment getThingToBuy(String paymentIntent) {
         return new PayPalPayment(
 
