@@ -20,13 +20,15 @@ import android.view.MenuItem;
 import com.magicbus.authentication.login.LoginFragment;
 import com.magicbus.authentication.registration.RegistrationFragment;
 import com.magicbus.data.Repository;
+import com.magicbus.data.entries.TechnologyArray;
 import com.magicbus.reservation.SeatActivity;
 import com.magicbus.roomdb.TripHistoryActivity;
 import com.magicbus.search.city.CityFragment;
+import com.magicbus.technology.TechnologyFragment;
 
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, CityFragment.OnCityFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener, CityFragment.OnCityFragmentInteractionListener, TechnologyFragment.OnListFragmentInteractionListener {
 
     Repository repository;  //fix
     @Override
@@ -136,7 +138,15 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
+           Fragment fg = new TechnologyFragment();
 
+           getSupportFragmentManager().beginTransaction()
+
+                   .replace(R.id.frag_container, fg)
+
+
+
+                   .commit();
         } else if (id == R.id.nav_send) {
 
         }
@@ -148,6 +158,11 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onFragmentInteraction(Uri uri) {
+
+    }
+
+    @Override
+    public void onListFragmentInteraction(TechnologyArray.Technology item) {
 
     }
 }

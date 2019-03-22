@@ -30,6 +30,7 @@ import com.magicbus.data.Repository;
 import com.magicbus.data.entries.Passenger;
 import com.magicbus.roomdb.TripHistoryActivity;
 import com.magicbus.search.city.CityFragment;
+import com.magicbus.technology.TechnologyFragment;
 
 public class CheckoutActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener, CityFragment.OnCityFragmentInteractionListener {
 
@@ -139,17 +140,39 @@ public class CheckoutActivity extends AppCompatActivity implements View.OnClickL
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
         if (id == R.id.nav_slideshow) {
-
-
-
 
             Intent intent = new Intent(this, TripHistoryActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_manage) {
 
         } else if (id == R.id.nav_share) {
+
+            Fragment fg = new TechnologyFragment();
+
+            getSupportFragmentManager().beginTransaction()
+
+                    .replace(R.id.frag_container, fg)
+
+
+
+                    .commit();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         } else if (id == R.id.nav_send) {
 

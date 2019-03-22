@@ -69,12 +69,14 @@ public class PaymentFragment extends Fragment implements CouponsContract.View, C
     private CouponsContract.Presenter couponsPresenter;
     private CouponsValidationContract.Presenter couponsValidationPresenter;
 
-    private FloatingActionButton floatingActionButton;
-    private TextView tv_baseFare, tv_tax, tv_total, tv_coupon;
+    private TextView tv_baseFare, tv_tax, tv_coupon, tv_total;
     private EditText et_coupon;
     private Button button_coupon;
     private ImageButton button_paypal;
 
+    private double baseFare = 0.0;
+    private double tax = 0.0;
+    private double couponDiscount = 0.0;
     private double totalPrice = 0.0;
 
     private static PayPalConfiguration config = new PayPalConfiguration()
@@ -99,8 +101,8 @@ public class PaymentFragment extends Fragment implements CouponsContract.View, C
         this.couponsValidationPresenter = new CouponsValidationPresenter(this);
         this.tv_baseFare = view.findViewById(R.id.tv_baseFare);
         this.tv_tax = view.findViewById(R.id.tv_tax);
+        this.tv_coupon = view.findViewById(R.id.tv_coupon);
         this.tv_total = view.findViewById(R.id.tv_total);
-
         this.et_coupon = view.findViewById(R.id.et_coupon);
         this.button_coupon = view.findViewById(R.id.button_coupon);
         this.button_paypal = view.findViewById(R.id.button_paypal);
@@ -109,10 +111,14 @@ public class PaymentFragment extends Fragment implements CouponsContract.View, C
         BusInformation busInformation = gson.fromJson(bus, BusInformation.class);
 
 
+        baseFare = Integer.parseInt(busInformation.getFare()) * getArguments().getInt("quantity", 1);
+        tax = baseFare * 0.1;
+        totalPrice = baseFare + tax - couponDiscount;
 
-        tv_baseFare.setText(String.valueOf(Integer.parseInt(busInformation.getFare()) * getArguments().getInt("quantity", 1)));
-        tv_tax.setText(calculateTax(tv_baseFare.getText().toString()));
-        tv_total.setText(calculateTotal(tv_baseFare.getText().toString(), tv_tax.getText().toString()));
+        tv_baseFare.setText(String.valueOf(baseFare));
+        tv_tax.setText(String.valueOf(tax));
+        tv_coupon.setText("-" + String.valueOf(couponDiscount));
+        tv_total.setText(String.valueOf(totalPrice));
 
 
 
@@ -154,19 +160,19 @@ public class PaymentFragment extends Fragment implements CouponsContract.View, C
         mTripDao = db.tripDao();
     }
 
-    public String calculateTax(String baseFare) {
-        double doubleBaseFare = Double.parseDouble(baseFare);
-        double tax = doubleBaseFare * 0.1;
-        return Double.toString(tax);
-    }
-
-    public String calculateTotal(String baseFare, String tax) {
-        double doubleBaseFare = Double.parseDouble(baseFare);
-        double doubleTax = Double.parseDouble(tax);
-        double total = doubleBaseFare + doubleTax;
-        this.totalPrice = total;
-        return Double.toString(total);
-    }
+//    public String calculateTax(String baseFare) {
+//        double doubleBaseFare = Double.parseDouble(baseFare);
+//        double tax = doubleBaseFare * 0.1;
+//        return Double.toString(tax);
+//    }
+//
+//    public String calculateTotal(String baseFare, String tax) {
+//        double doubleBaseFare = Double.parseDouble(baseFare);
+//        double doubleTax = Double.parseDouble(tax);
+//        double total = doubleBaseFare + doubleTax;
+//        this.totalPrice = total;
+//        return Double.toString(total);
+//    }
 
     @Override
     public void getCouponsResponse(List<Coupons> response) {
@@ -182,11 +188,12 @@ public class PaymentFragment extends Fragment implements CouponsContract.View, C
         if (response.get(0).getMsg().equals("success")){
             Log.d("Coupons Validation", response.get(0).toString());
             String discount = response.get(0).getDiscount();
-            double totalPriceAfterDiscount = (1 - (Double.parseDouble(discount) / 100)) * totalPrice;
-            this.totalPrice = totalPriceAfterDiscount;
-            String totalAfterDiscount = Double.toString(totalPriceAfterDiscount);
-            tv_total.setText(totalAfterDiscount);
-            totalPrice = totalPriceAfterDiscount;
+            couponDiscount = baseFare * Double.valueOf(discount) / 100;
+            tv_coupon.setText("-" + String.valueOf(couponDiscount));
+
+            totalPrice = baseFare + tax - couponDiscount;
+            tv_total.setText(String.valueOf(totalPrice));
+
             Toast.makeText(getContext(), discount + "% discount is applied", Toast.LENGTH_LONG).show();
         }
         else Toast.makeText(getContext(), "Invalid Coupon Number", Toast.LENGTH_SHORT).show();
@@ -219,10 +226,6 @@ public class PaymentFragment extends Fragment implements CouponsContract.View, C
         SharedPreferences sf = getActivity().getSharedPreferences("default", Context.MODE_PRIVATE);
         String token_id = sf.getString("token_id", "");
 
-
-
-
-
         String busInfo = sf.getString("busInfo", "");
         Gson gson = new Gson();
 
@@ -239,10 +242,6 @@ public class PaymentFragment extends Fragment implements CouponsContract.View, C
         String passengerid = "";
         String passengeremail = sf.getString("passengeremail", "");
         String passengermobile = "";
-
-
-
-
         String selectedseat = sf.getString("selectedseat", "");
         String passengername = sf.getString("passengername", "");
         String passengerage = sf.getString("passengerage", "");
@@ -273,13 +272,34 @@ public class PaymentFragment extends Fragment implements CouponsContract.View, C
                          * For sample mobile backend interactions, see
                          * https://github.com/paypal/rest-api-sdk-python/tree/master/samples/mobile_backend
                          */
-//                        Intent email = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto",EMAIL ADDRESS HERE, null));
-//                        email.putExtra(Intent.EXTRA_SUBJECT, "ORDER CONFIRMATION");
-//                        email.putExtra(Intent.EXTRA_TEXT,"Thanks for using our Services. Below are your bus details /n" +
-//                                        "Token number is " + token_id + "/n" + "route name is: " + route_name + "/n" +
-//                                        "Journey Day is" + journydate + "/n" + "Boarding time is at " + boardingtime + "/n" +
-//                                "Your passenger id is " + passengerid + "/n" + "your seat number is " + selectedSeat);
-//                        startActivity(Intent.createChooser(email, "Send email..."));
+
+
+                        SharedPreferences sf = getActivity().getSharedPreferences("default", Context.MODE_PRIVATE);
+                        String busInfo = sf.getString("busInfo", "");
+                        Gson gson = new Gson();
+
+                        BusInformation busInformation = gson.fromJson(busInfo, BusInformation.class);
+                        String token_id = sf.getString("token_id", "");
+                        String route_name = busInformation.getBusregistrationno();
+                        String busid = busInformation.getBusid();
+                        String fare = String.valueOf(totalPrice);
+                        String coupondiscount = "";
+                        String servicetax = "";
+                        String journydate = sf.getString("journydate", "");
+                        String boardingtime = busInformation.getBoardingtime();
+                        String droppingtime = busInformation.getDropingtime();
+                        String duration = busInformation.getJournyduration();
+                        String passengeremail = sf.getString("passengeremail", "");
+                        String selectedseat = sf.getString("selectedseat", "");
+
+
+                        Intent email = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto",passengeremail, null));
+                        email.putExtra(Intent.EXTRA_SUBJECT, "ORDER CONFIRMATION");
+                        email.putExtra(Intent.EXTRA_TEXT,"Thanks for using our Services. Below are your Bus Reservation Details : \n" +
+                                        "Ticket Number is " + token_id + "\n" + "Route Name is: " + route_name + "\n" +
+                                        "Journey Day is" + journydate + "\n" + "Boarding Time is at " + boardingtime + "\n" +
+                                        "Your Seat Number is " + selectedseat);
+                        startActivity(Intent.createChooser(email, "Send email..."));
                         displayResultText("PaymentConfirmation info received from PayPal");
 
 

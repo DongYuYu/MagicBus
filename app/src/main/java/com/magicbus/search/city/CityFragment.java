@@ -289,16 +289,18 @@ public class CityFragment extends Fragment implements CityInterface.View, Adapte
                 String startlat, startLong;
                 startlat = source.getCitylatitude();
                 startLong = source.getCitylongtitude();
-                Bundle source_args = new Bundle();
-                source_args.putString("lat", startlat);
-                source_args.putString("long", startLong);
+                if (!startlat.equals("")) {
+                    Bundle source_args = new Bundle();
+                    source_args.putString("lat", startlat);
+                    source_args.putString("long", startLong);
 
-                Fragment source_fg = new MapFragment();
-                source_fg.setArguments(source_args);
+                    Fragment source_fg = new MapFragment();
+                    source_fg.setArguments(source_args);
 
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, source_fg)
-                        .addToBackStack(null)
-                        .commit();
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, source_fg)
+                            .addToBackStack(null)
+                            .commit();
+                }
                 break;
 
 
@@ -307,18 +309,18 @@ public class CityFragment extends Fragment implements CityInterface.View, Adapte
                    String  endLat, endlong;
                    endLat = dest.getCitylatitude();
                    endlong = dest.getCitylongtitude();
+                if (!endLat.equals("")) {
+                    Bundle dest_args = new Bundle();
+                    dest_args.putString("lat", endLat);
+                    dest_args.putString("long", endlong);
 
-                Bundle dest_args = new Bundle();
-                dest_args.putString("lat", endLat);
-                dest_args.putString("long", endlong);
+                    Fragment dest_fg = new MapFragment();
+                    dest_fg.setArguments(dest_args);
 
-                Fragment dest_fg = new MapFragment();
-                dest_fg.setArguments(dest_args);
-
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, dest_fg)
-                        .addToBackStack(null)
-                        .commit();
-
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, dest_fg)
+                            .addToBackStack(null)
+                            .commit();
+                }
                 break;
 
 
